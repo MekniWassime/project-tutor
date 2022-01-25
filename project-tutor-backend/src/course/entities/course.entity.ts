@@ -1,6 +1,8 @@
 import { type } from "os";
 import { Timestamp } from "src/generics/timestamps";
 import { PackageEntity } from "src/package/entities/package.entity";
+import { SchedularEntity } from "src/session/entities/schedular.entity";
+import { SessionEntity } from "src/session/entities/session.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { CourseCategoryEnum } from "./courseCategoryEnum";
 
@@ -35,4 +37,22 @@ export class CourseEntity extends Timestamp{
         }
     )
     packages: PackageEntity[];
+
+    @OneToMany(
+        type => SessionEntity,
+        (sess) => sess.course,
+        {
+            cascade: true
+        }
+    )
+    sessions: SessionEntity[];
+
+    @OneToMany(
+        type => SchedularEntity,
+        (sched) => sched.course,
+        {
+            cascade: true
+        }
+    )
+    schedulars: SchedularEntity[];
 }

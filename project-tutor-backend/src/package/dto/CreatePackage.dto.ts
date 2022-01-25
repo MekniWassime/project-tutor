@@ -21,5 +21,4 @@ export class CreatePackageDTO {
   })
   @IsNotEmpty()
   nbSessions: number;
-
 }
