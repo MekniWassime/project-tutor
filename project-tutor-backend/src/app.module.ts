@@ -10,6 +10,7 @@ import { SessionModule } from './session/session.module';
 import { SessionEntity } from './session/entities/session.entity';
 import { SchedularEntity } from './session/entities/schedular.entity';
 import { ScheduleModule } from '@nestjs/schedule';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -23,7 +24,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     synchronize: true,
   }),
   TypeOrmModule.forFeature([PackageEntity,CourseEntity, SessionEntity,SchedularEntity]),
-  PackageModule,CourseModule, SessionModule,
+  PackageModule,CourseModule, SessionModule, AuthModule,
   ScheduleModule.forRoot()
  ],
   controllers: [AppController],
