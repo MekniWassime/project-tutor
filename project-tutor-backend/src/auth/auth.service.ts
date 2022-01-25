@@ -10,15 +10,13 @@ import { Tokens } from './types';
 import * as nodemailer from 'nodemailer';
 import {default as config} from '../config';
 import { ForgottenPassword } from './forgottenPassword.entity';
-import { MailService } from 'src/mail/mail.service';
 
 @Injectable()
 export class AuthService {
     constructor(
         @InjectRepository(Mentor) private readonly mentorRepository: Repository<Mentor>,
         @InjectRepository(ForgottenPassword) private readonly forgottenPasswordRepository: Repository<ForgottenPassword>,
-        private jwtService: JwtService,
-        private readonly mailService: MailService
+        private jwtService: JwtService
     ) {}
 
     
@@ -31,21 +29,18 @@ export class AuthService {
             password: hash,
             name: dto.name,
             occupation: dto.occupation,
-            hashedRT: '',
-            confirmed: false,
+            hashedRT: ''
         })
 
         const tokens = await this.getTokens(newMentor.id, newMentor.email);
         await this.updateRtHash(newMentor.id, tokens.refresh_token);
-        await this.mailService.createEmailToken(newMentor.email);
-        await this.mailService.sendEmailVerification(newMentor.email);
         return tokens;
     }
 
     async login(dto: LoginDto) {
         const mentor = this.mentorRepository.findOne({where:{email: dto.email} },);
 
-        if (!mentor || !(await mentor).confirmed) throw new ForbiddenException('Access Denied');
+        if (!mentor) throw new ForbiddenException('Access Denied');
         
         const passHashed = this.hashData(dto.password);
         const passwordMatches = await bcrypt.compare((await mentor).password, await passHashed);

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import * as bcrypt from 'bcrypt'; 
 
 @Entity('mentors')
 export class Mentor {
@@ -19,7 +20,4 @@ export class Mentor {
 
     @Column()
     hashedRT: string;
-
-    @Column()
-    confirmed: boolean;
 }
