@@ -25,51 +25,51 @@ export class SessionController {
       return this.sessionService.findOne(+id);
     }
   
-    @Patch('update/:id')
     @UseGuards(AuthGuard('jwt'))
+    @Patch('update/:id')
     update(@Param('id') id: string, @Body() updateSessionDto: UpdateSessionDto) {
       return this.sessionService.update(+id, updateSessionDto);
     }
   
-    @Delete('delete/:id')
     @UseGuards(AuthGuard('jwt'))
+    @Delete('delete/:id')
     remove(@Param('id') id: string) {
       return this.sessionService.remove(+id);
     }
     
-    @Post('create/:courseId')
     @UseGuards(AuthGuard('jwt'))
+    @Post('create/:courseId')
     create(@Param('courseId') courseId: string,@Body() addSessionDto: CreateSessionDTO){
       return this.sessionService.createWithRelation(addSessionDto,courseId);
     }
 
     //Schedular
-    @Get('schedular/findByCourse/:id')
     @UseGuards(AuthGuard('jwt'))
+    @Get('schedular/findByCourse/:id')
     findSchedularByCourse(@Param('id') courseId: string) {
       return this.schedularService.findByCourse(courseId);
     }
   
-    @Get('schedular/:id')
     @UseGuards(AuthGuard('jwt'))
+    @Get('schedular/:id')
     findSchedularOne(@Param('id') id: string) {
       return this.schedularService.findOne(+id);
     }
   
-    @Patch('schedular/update/:id')
     @UseGuards(AuthGuard('jwt'))
+    @Patch('schedular/update/:id')
     updateSchedular(@Param('id') id: string, @Body() updateSchedularDto: UpdateSchedularDto) {
       return this.schedularService.update(+id, updateSchedularDto);
     }
   
-    @Delete('schedular/delete/:id')
     @UseGuards(AuthGuard('jwt'))
+    @Delete('schedular/delete/:id')
     removeSchedular(@Param('id') id: string) {
       return this.schedularService.remove(+id);
     }
     
-    @Post('schedular/create/:courseId')
     @UseGuards(AuthGuard('jwt'))
+    @Post('schedular/create/:courseId')
     createSchedular(@Param('courseId') courseId: string,@Body() addSchedularDto: CreateSchedularDto){
       return this.schedularService.createWithRelation(addSchedularDto,courseId);
     }

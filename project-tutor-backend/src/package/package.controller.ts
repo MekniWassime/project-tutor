@@ -27,20 +27,20 @@ export class PackageController {
       return this.packageService.findOne(+id);
     }
   
-    @Patch('update/:id')
     @UseGuards(AuthGuard('jwt'))
+    @Patch('update/:id')
     update(@Param('id') id: string, @Body() updatePackageDto: UpdatePackageDto) {
       return this.packageService.update(+id, updatePackageDto);
     }
   
-    @Delete('delete/:id')
     @UseGuards(AuthGuard('jwt'))
+    @Delete('delete/:id')
     remove(@Param('id') id: string) {
       return this.packageService.remove(+id);
     }
     
-    @Post('create/:courseId')
     @UseGuards(AuthGuard('jwt'))
+    @Post('create/:courseId')
     create(@Param('courseId') courseId: string,@Body() addPackageDto: CreatePackageDTO){
       return this.packageService.createWithRelation(addPackageDto,courseId);
     }
