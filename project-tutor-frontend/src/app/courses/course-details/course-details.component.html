@@ -1,0 +1,24 @@
+<div class="course_details_area">
+    <section *ngIf="course!=null; else loadingspinner" class="section_gap">
+        <div class="container">
+            <app-course-title>{{course.title | titlecase}}</app-course-title>
+            <div class="row">
+                <div class="col-lg-8 course_details_left">
+                    <app-cover-image [image-source]="course.image" [average-rating]="course.averageRating"></app-cover-image>
+                    <app-course-description [description]="course.description"></app-course-description>
+                    <app-adress-map-preview></app-adress-map-preview>
+                </div>
+                <div class="col-lg-4 right-contents">
+                    <app-course-informations [payment-info-list]="course.paymentInfoList"></app-course-informations>
+                    <button type="button" class="button block">ENROLL THE COURSE</button>
+                    <app-reviews-summery></app-reviews-summery>
+                    <app-review-form></app-review-form>
+                    <app-reviews-preview></app-reviews-preview>
+                </div>
+            </div>
+        </div>
+    </section>
+    <ng-template #loadingspinner>
+        <app-loading-spinner></app-loading-spinner>
+    </ng-template>
+</div>
