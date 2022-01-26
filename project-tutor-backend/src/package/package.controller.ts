@@ -4,8 +4,10 @@ import {  Body,
     Get,
     Param,
     Patch,
-    Post
+    Post,
+    UseGuards
  } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CreatePackageDTO } from './dto/CreatePackage.dto';
 import { UpdatePackageDto} from './dto/UpdatePackage.dto'
 import { PackageService } from './package.service';
@@ -26,16 +28,19 @@ export class PackageController {
     }
   
     @Patch('update/:id')
+    @UseGuards(AuthGuard('jwt'))
     update(@Param('id') id: string, @Body() updatePackageDto: UpdatePackageDto) {
       return this.packageService.update(+id, updatePackageDto);
     }
   
     @Delete('delete/:id')
+    @UseGuards(AuthGuard('jwt'))
     remove(@Param('id') id: string) {
       return this.packageService.remove(+id);
     }
     
     @Post('create/:courseId')
+    @UseGuards(AuthGuard('jwt'))
     create(@Param('courseId') courseId: string,@Body() addPackageDto: CreatePackageDTO){
       return this.packageService.createWithRelation(addPackageDto,courseId);
     }
