@@ -11,16 +11,7 @@ import { JwtStrategy } from "./strategy/at.strategy";
 
 
 @Module({
-    imports: [TypeOrmModule.forRoot({
-        type: 'mysql',
-        host: 'localhost',
-        port: 3306,
-        username: 'root',
-        password: 'root',
-        database: 'projetaymen',
-        entities: [Mentor, ForgottenPassword],
-        synchronize: true,
-      }),
+    imports:[
       TypeOrmModule.forFeature([Mentor, ForgottenPassword]),
       JwtModule.register({})
     ],

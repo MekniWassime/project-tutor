@@ -11,6 +11,8 @@ import { SessionEntity } from './session/entities/session.entity';
 import { SchedularEntity } from './session/entities/schedular.entity';
 import { ScheduleModule } from '@nestjs/schedule';
 import { AuthModule } from './auth/auth.module';
+import { Mentor } from './auth/mentor.entity';
+import { ForgottenPassword } from './auth/forgottenPassword.entity';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -23,7 +25,7 @@ import { AuthModule } from './auth/auth.module';
     entities: ["dist/**/*.entity{.ts,.js}"],
     synchronize: true,
   }),
-  TypeOrmModule.forFeature([PackageEntity,CourseEntity, SessionEntity,SchedularEntity]),
+  TypeOrmModule.forFeature([PackageEntity,CourseEntity, SessionEntity,SchedularEntity, Mentor,ForgottenPassword]),
   PackageModule,CourseModule, SessionModule, AuthModule,
   ScheduleModule.forRoot()
  ],
