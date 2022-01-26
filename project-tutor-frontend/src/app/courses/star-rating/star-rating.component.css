@@ -1,0 +1,11 @@
+.star{
+    color: #777;
+    text-shadow: 0 0 10px white;
+}
+
+.star .checked {
+    color: #4dbf1c;
+}
+.fa-star{
+    margin-right: 5px;
+}

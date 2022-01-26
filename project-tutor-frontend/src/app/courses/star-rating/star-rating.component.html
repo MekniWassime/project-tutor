@@ -1,0 +1,10 @@
+
+<div class="star">
+    <span
+      *ngFor="let star of stars; let i = index"
+      (click)="rate(i + 1)"
+    >
+      <ng-container *ngIf="star; else noStar"><i class="fa fa-star checked"></i></ng-container>
+      <ng-template #noStar><i class="fa fa-star"></i></ng-template>
+    </span>
+</div>

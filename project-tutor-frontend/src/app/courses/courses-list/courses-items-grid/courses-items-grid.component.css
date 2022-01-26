@@ -1,0 +1,15 @@
+.align-items-stretch {
+    -webkit-box-align: stretch !important;
+    -ms-flex-align: stretch !important;
+    align-items: stretch !important;
+}
+.d-flex {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: block !important;
+}
+
+.grid-container{
+    padding-left: 100px;
+    padding-right: 100px;
+}

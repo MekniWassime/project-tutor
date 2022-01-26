@@ -1,0 +1,11 @@
+a {
+    color: #222;
+}
+h5{
+    display: inline-flex
+}
+.comments-area .comment {
+    color: #777;
+    margin-bottom: 0;
+    font-family: "Montserrat",sans-serif;
+}

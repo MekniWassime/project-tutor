@@ -1,0 +1,7 @@
+<app-course-title>User Reviews:</app-course-title>
+<div *ngIf="reviews!=null; else loadingspinner">
+    <app-review-item *ngFor="let reviewItem of reviews;" [review]="reviewItem"></app-review-item>
+</div>
+<ng-template #loadingspinner>
+    <app-loading-spinner></app-loading-spinner>
+</ng-template>

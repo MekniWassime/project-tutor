@@ -1,0 +1,29 @@
+textarea {
+    resize: none;
+    height: 130px;
+    background: #f1f9ff;
+    margin-bottom: 10px;
+}
+
+.button {
+    background-color: #2ad9e1;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    margin-right: 0;
+    margin-left: auto;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.button:active {
+    opacity: 1;
+    background-color:#04dfdc;
+    transition: 0s
+}
+
+.align-right{
+    text-align: right;
+}

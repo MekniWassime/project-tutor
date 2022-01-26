@@ -1,0 +1,13 @@
+<div class="desc">
+    <div class="row">
+        <div class="col-7">
+            <a>{{review.userName | titlecase}}</a>
+        </div>
+        <div class="col-5">
+            <app-star-rating readonly [rating]="review.rating"></app-star-rating>
+        </div>
+    </div>
+    <p class="comment">
+        {{review.feedback}}
+    </p>
+</div>

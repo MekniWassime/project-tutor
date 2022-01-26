@@ -1,0 +1,19 @@
+h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+label input {
+    margin-right: 7px;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-family: "Poppins", Arial, sans-serif;
+    background: #fff;
+    font-size: 16px;
+    line-height: 1.8;
+    font-weight: 400;
+    color: #999999;
+}
