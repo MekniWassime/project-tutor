@@ -17,7 +17,7 @@ export class SchedularEntity extends Timestamp{
             enum: DaysEnum
         }
     )
-    date: DaysEnum;
+    dayOfWeek: DaysEnum;
 
     //in minutes
     @Column()
