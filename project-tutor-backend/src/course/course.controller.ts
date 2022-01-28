@@ -1,3 +1,4 @@
+import { FindCourseWhereDTO } from './dto/FindCourseWhere.dto';
 import {  Body,
     Controller,
     Delete,
@@ -6,6 +7,7 @@ import {  Body,
     Patch,
     Post,
     Req,
+    Query,
     UseGuards
  } from '@nestjs/common';
 import { CreateCourseDto } from './dto/CreateCourse.dto';
@@ -13,13 +15,14 @@ import { UpdateCourseDto} from './dto/UpdateCourse.dto'
 import { CourseService } from './course.service';
 import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
+import { CourseCategoryEnum } from './entities/courseCategoryEnum';
 
 
 @Controller('course')
 export class CourseController {
     constructor(private courseService: CourseService) {}
 
-    @UseGuards(AuthGuard('jwt'))
+    //@UseGuards(AuthGuard('jwt'))
     @Post('create')
     create(@Req() req: Request, @Body() addCourseDto: CreateCourseDto){
       const mentorId = req.user;
@@ -27,8 +30,8 @@ export class CourseController {
     }
     
     @Get('findAll')
-    findAll() {
-      return this.courseService.findAll({});
+    findAll(@Query() query: FindCourseWhereDTO) {
+      return this.courseService.search(query.searchTerm,query.excludedCategories);
     }
   
     @Get(':id')

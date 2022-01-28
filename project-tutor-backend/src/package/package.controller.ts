@@ -39,7 +39,7 @@ export class PackageController {
       return this.packageService.remove(+id);
     }
     
-    @UseGuards(AuthGuard('jwt'))
+    //TODO @UseGuards(AuthGuard('jwt'))
     @Post('create/:courseId')
     create(@Param('courseId') courseId: string,@Body() addPackageDto: CreatePackageDTO){
       return this.packageService.createWithRelation(addPackageDto,courseId);
