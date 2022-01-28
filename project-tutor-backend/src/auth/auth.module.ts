@@ -15,7 +15,7 @@ import { JwtStrategy } from "./strategy/at.strategy";
       TypeOrmModule.forFeature([Mentor, ForgottenPassword]),
       JwtModule.register({})
     ],
-    exports: [],
+    exports: [AuthService],
     controllers: [AuthController],
     providers: [AuthService, JwtStrategy, RtStrategy]
 })

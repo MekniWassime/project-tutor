@@ -13,6 +13,9 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { AuthModule } from './auth/auth.module';
 import { Mentor } from './auth/mentor.entity';
 import { ForgottenPassword } from './auth/forgottenPassword.entity';
+import { EnrollmentModule } from './enrollment/enrollment.module';
+import { EnrollmenEntity } from './enrollment/entities/enrollment.entity';
+import { AttendanceEntity } from './enrollment/entities/attendance.entity';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -25,9 +28,10 @@ import { ForgottenPassword } from './auth/forgottenPassword.entity';
     entities: ["dist/**/*.entity{.ts,.js}"],
     synchronize: true,
   }),
-  TypeOrmModule.forFeature([PackageEntity,CourseEntity, SessionEntity,SchedularEntity, Mentor,ForgottenPassword]),
+  TypeOrmModule.forFeature([PackageEntity,CourseEntity, SessionEntity,SchedularEntity, Mentor,ForgottenPassword, EnrollmenEntity,AttendanceEntity]),
   PackageModule,CourseModule, SessionModule, AuthModule,
-  ScheduleModule.forRoot()
+  ScheduleModule.forRoot(),
+  EnrollmentModule,
  ],
   controllers: [AppController],
   providers: [AppService],

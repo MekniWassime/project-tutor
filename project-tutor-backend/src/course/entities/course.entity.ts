@@ -1,9 +1,11 @@
 import { type } from "os";
+import { Mentor } from "src/auth/mentor.entity";
+import { EnrollmenEntity } from "src/enrollment/entities/enrollment.entity";
 import { Timestamp } from "src/generics/timestamps";
 import { PackageEntity } from "src/package/entities/package.entity";
 import { SchedularEntity } from "src/session/entities/schedular.entity";
 import { SessionEntity } from "src/session/entities/session.entity";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { CourseCategoryEnum } from "./courseCategoryEnum";
 
 @Entity('course')
@@ -28,6 +30,15 @@ export class CourseEntity extends Timestamp{
 
     @Column()
     address: string;
+
+    @ManyToOne(
+        type => Mentor,
+        (mentor) => mentor.courses,
+        {
+            cascade: false,
+        }
+    )
+    mentor: Mentor;
 
     @OneToMany(
         type => PackageEntity,
@@ -55,4 +66,13 @@ export class CourseEntity extends Timestamp{
         }
     )
     schedulars: SchedularEntity[];
+
+    @OneToMany(
+        type => EnrollmenEntity,
+        (enroll) => enroll.course,
+        {
+            cascade: true
+        }
+    )
+    enrollments: EnrollmenEntity[];
 }

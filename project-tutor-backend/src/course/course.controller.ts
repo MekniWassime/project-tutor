@@ -5,12 +5,14 @@ import {  Body,
     Param,
     Patch,
     Post,
+    Req,
     UseGuards
  } from '@nestjs/common';
 import { CreateCourseDto } from './dto/CreateCourse.dto';
 import { UpdateCourseDto} from './dto/UpdateCourse.dto'
 import { CourseService } from './course.service';
 import { AuthGuard } from '@nestjs/passport';
+import { Request } from 'express';
 
 
 @Controller('course')
@@ -19,8 +21,9 @@ export class CourseController {
 
     @UseGuards(AuthGuard('jwt'))
     @Post('create')
-    create(@Body() addCourseDto: CreateCourseDto){
-      return this.courseService.create(addCourseDto);
+    create(@Req() req: Request, @Body() addCourseDto: CreateCourseDto){
+      const mentorId = req.user;
+      return this.courseService.createWithRelation(addCourseDto, mentorId);
     }
     
     @Get('findAll')

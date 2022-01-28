@@ -10,14 +10,18 @@ import { Tokens } from './types';
 import * as nodemailer from 'nodemailer';
 import {default as config} from '../config';
 import { ForgottenPassword } from './forgottenPassword.entity';
+import { CrudService } from 'src/generics/crud.service';
 
 @Injectable()
-export class AuthService {
+export class AuthService extends CrudService<Mentor> {
     constructor(
         @InjectRepository(Mentor) private readonly mentorRepository: Repository<Mentor>,
         @InjectRepository(ForgottenPassword) private readonly forgottenPasswordRepository: Repository<ForgottenPassword>,
+        
         private jwtService: JwtService
-    ) {}
+    ) {
+        super(mentorRepository)
+    }
 
     
 
