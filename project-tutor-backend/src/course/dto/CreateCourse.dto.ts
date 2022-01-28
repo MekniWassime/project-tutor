@@ -24,6 +24,4 @@ export class CreateCourseDto {
 
   @IsNotEmpty()
   address: string;
-
-
 }

@@ -1,3 +1,4 @@
+import { FindCourseWhereDTO } from './dto/FindCourseWhere.dto';
 import {  Body,
     Controller,
     Delete,
@@ -5,27 +6,29 @@ import {  Body,
     Param,
     Patch,
     Post,
+    Query,
     UseGuards
  } from '@nestjs/common';
 import { CreateCourseDto } from './dto/CreateCourse.dto';
 import { UpdateCourseDto} from './dto/UpdateCourse.dto'
 import { CourseService } from './course.service';
 import { AuthGuard } from '@nestjs/passport';
+import { CourseCategoryEnum } from './entities/courseCategoryEnum';
 
 
 @Controller('course')
 export class CourseController {
     constructor(private courseService: CourseService) {}
 
-    @UseGuards(AuthGuard('jwt'))
+    //@UseGuards(AuthGuard('jwt'))
     @Post('create')
     create(@Body() addCourseDto: CreateCourseDto){
       return this.courseService.create(addCourseDto);
     }
     
     @Get('findAll')
-    findAll() {
-      return this.courseService.findAll({});
+    findAll(@Query() query: FindCourseWhereDTO) {
+      return this.courseService.search(query.searchTerm,query.excludedCategories);
     }
   
     @Get(':id')

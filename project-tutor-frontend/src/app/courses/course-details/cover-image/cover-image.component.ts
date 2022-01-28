@@ -1,3 +1,4 @@
+import { CourseDetailsService } from './../course-details.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -6,9 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./cover-image.component.css']
 })
 export class CoverImageComponent implements OnInit {
-  @Input('image-source') imageSource: string = '';
-  @Input('average-rating') averageRating: number = 0;
-  constructor() { }
+  constructor(public courseService: CourseDetailsService) { }
 
   ngOnInit(): void {
   }

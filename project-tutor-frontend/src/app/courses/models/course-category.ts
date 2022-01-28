@@ -1,20 +1,20 @@
 export enum CourseCategory {
-    Category1,
-    Category2,
-    Category3
-}
+    Sport = 'Sport',
+    Etude = 'Etude',
+    Art = 'Art',
+  }
 
 export class CourseCategoryUtility {
-    static categories = [CourseCategory.Category1, CourseCategory.Category2, CourseCategory.Category3];
+    static categories = [CourseCategory.Sport, CourseCategory.Etude, CourseCategory.Art];
 
     static humanReadable(category: CourseCategory): string {
         switch (category) {
-            case CourseCategory.Category1:
-                return "first category"
-            case CourseCategory.Category2:
-                return "second category"
-            case CourseCategory.Category3:
-                return "third category"
+            case CourseCategory.Sport:
+                return "Sport"
+            case CourseCategory.Etude:
+                return "Etude"
+            case CourseCategory.Art:
+                return "Art"
             default:
                 throw new Error(`value error, check you enums ${category}`);
         }

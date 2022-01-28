@@ -47,6 +47,6 @@ export class SearchPanelService {
   }
 
   public search() {
-    console.log(`search ${this.searchTerm} ${this.excludedCategories}`);
+    this.coursesStore.fetchCourses({'searchTerm': this.searchTerm, 'excludedCategories': this.excludedCategories});
   }
 }

@@ -1,3 +1,4 @@
+import { CourseDetailsService } from './../course-details.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Review } from '../../models/review';
 
@@ -7,25 +8,9 @@ import { Review } from '../../models/review';
   styleUrls: ['./reviews-preview.component.css']
 })
 export class ReviewsPreviewComponent implements OnInit {
-  //TODO: call backend service to get reviews, get id from route
-  public reviews: Review[] | undefined;
 
-  constructor(private ref:ChangeDetectorRef) { }
+  constructor(public courseService: CourseDetailsService) { }
 
   ngOnInit(): void {
-    this.loadCourse();
   }
-
-  async loadCourse(): Promise<void> {
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    this.reviews = [
-      new Review(3, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.", "mekni wassime",1),
-      new Review(4, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.", "dora gara",2),
-      new Review(5, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.", "kammoun rami",3),
-      new Review(3, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.", "kboubi oumaima",4),
-    ]
-    console.log("changed reviews list")
-    this.ref.detectChanges();
-  }
-
 }

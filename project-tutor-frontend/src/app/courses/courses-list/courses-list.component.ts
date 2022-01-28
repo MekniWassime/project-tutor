@@ -11,7 +11,7 @@ export class CoursesListComponent implements OnInit {
   constructor(public coursesStore: CoursesStoreService) { }
 
   ngOnInit(): void {
-    
+    this.coursesStore.fetchCourses({});
   }
 
 }

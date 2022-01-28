@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./adress-map-preview.component.css']
 })
 export class AdressMapPreviewComponent implements OnInit {
-
+  //TODO implement map from course adress
   constructor() { }
 
   ngOnInit(): void {
