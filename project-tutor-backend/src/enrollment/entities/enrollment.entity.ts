@@ -2,7 +2,7 @@ import { Mentor } from "src/auth/mentor.entity";
 import { CourseEntity } from "src/course/entities/course.entity";
 import { Timestamp } from "src/generics/timestamps";
 import { PackageEntity } from "src/package/entities/package.entity";
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('enrollment')
 export class EnrollmenEntity extends Timestamp{
@@ -30,6 +30,7 @@ export class EnrollmenEntity extends Timestamp{
     @ManyToMany(
         type => PackageEntity
     )
+    @JoinTable()
     packages: PackageEntity[]
 
     @Column()

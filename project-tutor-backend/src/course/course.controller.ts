@@ -15,7 +15,6 @@ import { UpdateCourseDto} from './dto/UpdateCourse.dto'
 import { CourseService } from './course.service';
 import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
-import { CourseCategoryEnum } from './entities/courseCategoryEnum';
 
 
 @Controller('course')

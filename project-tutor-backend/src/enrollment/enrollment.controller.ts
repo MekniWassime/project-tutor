@@ -12,7 +12,7 @@ export class EnrollmentController {
         private attendanceService: AttendanceService
         ) {}
 
-    @UseGuards(AuthGuard('jwt'))
+    // @UseGuards(AuthGuard('jwt'))
     @Post('enroll')
     enroll(@Body() addEnrollmentDto: CreateEnrollmentDto){
       return this.enrollmentService.createWithRelation(addEnrollmentDto);

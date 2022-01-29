@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AuthService } from 'src/auth/auth.service';
 import { CourseService } from 'src/course/course.service';
@@ -19,10 +19,10 @@ export class EnrollmentService extends CrudService<EnrollmenEntity> {
         super(enrollmentRepository);
     }
     async createWithRelation(createEnrollmentDto): Promise<EnrollmenEntity> {
-        
         const user = await this.authService.findOne(createEnrollmentDto.userId);
         const course = await this.courseService.findOne(createEnrollmentDto.courseId);
-        const pack = await this.packageService.findOne(createEnrollmentDto.packageId)
+        const pack = await this.packageService.findOne(createEnrollmentDto.packageId);
+
         if (user && course && pack) {
             const enroll= {
                 user: user,
