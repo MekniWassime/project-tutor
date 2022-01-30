@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AttendanceService } from './attendance/attendance.service';
 import { AddPackageDto } from './dto/AddPackage.dto';
@@ -28,6 +28,11 @@ export class EnrollmentController {
     @Post('attend')
     attend(@Body() createAttendanceDto: CreateAttendanceDto){
       return this.attendanceService.attend(createAttendanceDto);
+    }
+
+    @Get('clients/:id')
+    fetchEnrollmentsByCourse(@Param('id') id: string) {
+      return this.enrollmentService.getUsersCourse(id);
     }
 
 }

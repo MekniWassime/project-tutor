@@ -1,5 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
-import { PaymentInfo } from 'src/app/courses/models/payment-info';
+import { Component, Input,  OnInit } from '@angular/core';
 import { PackageModel } from '../../models/package-model';
 
 @Component({
@@ -9,15 +8,10 @@ import { PackageModel } from '../../models/package-model';
 })
 export class PaymentPackageComponent implements OnInit {
   @Input('pack') pack!: PackageModel;
-  selected = false;
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  select() {
-    this.selected = !this.selected
   }
 
 }

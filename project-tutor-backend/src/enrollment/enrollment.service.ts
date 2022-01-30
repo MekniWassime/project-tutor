@@ -29,7 +29,8 @@ export class EnrollmentService extends CrudService<EnrollmenEntity> {
                 course: course,
                 packages: [pack],
                 nbSessionsPayed: pack.nbSessions,
-                nbSessionsAttended: 0
+                nbSessionsAttended: 0,
+                lastPackage: pack.title
             }
             return this.enrollmentRepository.save(enroll);
         }
@@ -42,8 +43,16 @@ export class EnrollmentService extends CrudService<EnrollmenEntity> {
         if (pack && enroll) {
             enroll.packages.push(pack);
             enroll.nbSessionsPayed = enroll.nbSessionsPayed + pack.nbSessions;
+            enroll.lastPackage = pack.title;
             return this.enrollmentRepository.save(enroll);
         }
         throw new NotFoundException('Object innexistant');
+    }
+
+    async getUsersCourse(id): Promise<EnrollmenEntity[]> {
+        const course = await this.courseService.findOne(id);
+        if (course) {
+            return this.enrollmentRepository.find({ where: {course: course.id}, relations: ['user']});
+        }
     }
 }

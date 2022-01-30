@@ -38,4 +38,7 @@ export class EnrollmenEntity extends Timestamp{
 
     @Column()
     nbSessionsAttended: number;
+
+    @Column()
+    lastPackage: string;
 }

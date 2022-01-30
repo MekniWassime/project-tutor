@@ -1,0 +1,9 @@
+<div class="fullWidth">
+    <ul class="container">
+    <li *ngFor="let session of sessionsService.sessions | async">
+        <div [ngClass]="{'selected': selectedItem == session}" (click)="listClick($event, session)">
+            <app-session-card [session]="session" ></app-session-card>
+        </div>      
+    </li>
+    </ul>
+</div>

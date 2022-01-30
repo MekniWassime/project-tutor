@@ -1,0 +1,10 @@
+.container {
+    display: flex !important;
+    justify-content: center;
+    flex-direction: row !important;
+    border: none;
+    flex-wrap: wrap;
+}
+ul {
+    list-style-type: none;
+}
