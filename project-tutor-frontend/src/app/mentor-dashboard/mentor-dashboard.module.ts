@@ -10,7 +10,7 @@ import { SessionsListComponent } from './sessions/sessions-list/sessions-list.co
 import { SessionCardComponent } from './sessions/sessions-list/session-card/session-card.component';
 import { SchedularListComponent } from './sessions/schedular-list/schedular-list.component';
 import { SchedularCardComponent } from './sessions/schedular-list/schedular-card/schedular-card.component';
-import { AppRoutingModule } from '../app-routing.module';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -29,6 +29,7 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   imports: [
     CommonModule,
+    RouterModule
   ],
 })
 export class MentorDashboardModule { }

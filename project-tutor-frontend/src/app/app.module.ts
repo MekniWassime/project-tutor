@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MentorDashboardModule } from './mentor-dashboard/mentor-dashboard.module';
+import { SessionsComponent } from './mentor-dashboard/sessions/sessions.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +16,7 @@ import { MentorDashboardModule } from './mentor-dashboard/mentor-dashboard.modul
     HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[AppRoutingModule]
 })
 export class AppModule { }

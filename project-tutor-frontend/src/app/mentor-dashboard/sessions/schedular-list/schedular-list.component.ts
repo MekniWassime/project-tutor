@@ -17,7 +17,7 @@ export class SchedularListComponent implements OnInit {
   courseId ='';
 
   ngOnInit(): void {
-    this.activeRoute.params.subscribe(params => {
+    this.activeRoute.parent!.params.subscribe(params => {
       if (params['courseId']) {
         this.courseId = params['courseId']
         this.sessionsService.fetchSessions(params['courseId']);
