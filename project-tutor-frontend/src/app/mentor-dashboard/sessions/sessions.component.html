@@ -1,6 +1,13 @@
-<p>
-    <a [routerLink]="['sessions']">Sessions</a> |
-    <a [routerLink]="['schedulars']">Schedulars</a>
-</p>
-<router-outlet></router-outlet>
+<div class="containerSessions">
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn btn-secondary" [ngClass]="{'active': selectedItem == 'sessions'}">
+          <input type="radio" autocomplete="off" checked [routerLink]="['sessions']"  (click)="selectItem($event,'sessions')"> Sessions
+        </label>
+        <label class="btn btn-secondary" [ngClass]="{'active': selectedItem == 'schedulars'}" >
+          <input type="radio" autocomplete="off "[routerLink]="['schedulars']" (click)="selectItem($event,'schedulars')">Schedulars
+        </label>
+    </div>
+    <router-outlet></router-outlet>
+</div>
+
   

@@ -8,3 +8,23 @@
 ul {
     list-style-type: none;
 }
+
+.button {
+    margin: 10px;
+    background-color: #2ad9e1; /* Green */
+    border: none;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    width: 150px;
+    border-radius: 7px;
+}
+
+.button:active {
+    opacity: 1;
+    background-color:#04dfdc;
+    transition: 0s
+}

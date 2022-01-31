@@ -1,4 +1,5 @@
 <div class="fullWidth">
+    <button type="button" class="button block" (click)="createSchedular()">+ schedular</button>
     <ul class="container">
     <li *ngFor="let schedular of sessionsService.schedulars | async">
         <div [ngClass]="{'selected': selectedItem == schedular}" (click)="listClick($event, schedular)">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SessionsService } from '../sessions.service';
 
 @Component({
@@ -11,7 +11,8 @@ export class SessionsListComponent implements OnInit {
 
   constructor(    
     private activeRoute: ActivatedRoute,
-    public sessionsService: SessionsService
+    public sessionsService: SessionsService,
+    private router: Router,
   ) {}
 
   courseId ='';
@@ -30,5 +31,10 @@ export class SessionsListComponent implements OnInit {
 
   listClick(event: any, newValue: any) {
     this.selectedItem = newValue;
+  }
+
+  createSession() {
+    this.router.navigate(['/mentorDashboard/',this.courseId,'sessions','createSession']);
+
   }
 }

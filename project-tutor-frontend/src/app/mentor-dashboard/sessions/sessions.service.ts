@@ -30,4 +30,14 @@ export class SessionsService {
       this.schedularSubject.next(schedulars);
     })
   }
+  public async createSession(id:number, data:any){
+    this.httpClient.post(`http://localhost:3000/session/create/${id}`,data).subscribe((schedulars)=>{
+      this.router.navigate(['/mentorDashboard/',id,'sessions','sessions']);
+    })
+  }
+  public async createSchedular(id:number, data:any){
+    this.httpClient.post(`http://localhost:3000/session/schedular/create/${id}`,data).subscribe((schedulars)=>{
+      this.router.navigate(['/mentorDashboard/',id,'sessions','schedulars']);
+    })
+  }
 }

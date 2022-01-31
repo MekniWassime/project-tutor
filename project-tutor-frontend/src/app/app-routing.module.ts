@@ -10,6 +10,8 @@ import { EnrollmentsComponent } from './mentor-dashboard/enrollments/enrollments
 import { SessionsComponent } from './mentor-dashboard/sessions/sessions.component';
 import { SchedularListComponent } from './mentor-dashboard/sessions/schedular-list/schedular-list.component';
 import { SessionsListComponent } from './mentor-dashboard/sessions/sessions-list/sessions-list.component';
+import { CreateSessionComponent } from './mentor-dashboard/sessions/create-session/create-session.component';
+import { CreateSchedularComponent } from './mentor-dashboard/sessions/create-schedular/create-schedular.component';
 
 const routes: Routes = [{
   path: "courses", children: [
@@ -26,7 +28,10 @@ const routes: Routes = [{
       { path: ':courseId/sessions', component: SessionsComponent, 
         children:[
           { path: 'schedulars', component: SchedularListComponent },
-          { path: 'sessions', component: SessionsListComponent}
+          { path: 'sessions', component: SessionsListComponent},
+          { path: 'createSession', component: CreateSessionComponent},
+          { path: 'createSchedular', component: CreateSchedularComponent},
+
         ]},  
     
     // ]},

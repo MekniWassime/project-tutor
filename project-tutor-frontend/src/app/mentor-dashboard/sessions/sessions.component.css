@@ -1,0 +1,9 @@
+[type='radio'] {
+    display: none; 
+}
+
+.containerSessions {
+    width: 100vw;
+    align-content: center;
+    text-align: center;
+}

@@ -11,6 +11,9 @@ import { SessionCardComponent } from './sessions/sessions-list/session-card/sess
 import { SchedularListComponent } from './sessions/schedular-list/schedular-list.component';
 import { SchedularCardComponent } from './sessions/schedular-list/schedular-card/schedular-card.component';
 import { RouterModule } from '@angular/router';
+import { CreateSessionComponent } from './sessions/create-session/create-session.component';
+import { CreateSchedularComponent } from './sessions/create-schedular/create-schedular.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -25,11 +28,14 @@ import { RouterModule } from '@angular/router';
     SessionsListComponent,
     SessionCardComponent,
     SchedularListComponent,
-    SchedularCardComponent
+    SchedularCardComponent,
+    CreateSessionComponent,
+    CreateSchedularComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
 })
 export class MentorDashboardModule { }

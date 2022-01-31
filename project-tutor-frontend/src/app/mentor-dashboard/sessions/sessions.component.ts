@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sessions.component.css']
 })
 export class SessionsComponent implements OnInit {
-
+  selectedItem='sessions'
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  selectItem(event: any, newValue: any) {
+    this.selectedItem = newValue;
+  }
 }

@@ -1,0 +1,35 @@
+<div class="card b-0 show">
+    <div class="row justify-content-center">
+        <form #createSchedularForm="ngForm" class="col-lg-10 col-md-11">
+            <div class="form-group">
+                <label class="form-control-label">Frequency</label>
+                <select class="form-control" ngModel name="frequency">
+                    <option *ngFor="let freq of frequencies | keyvalue" [ngValue]="freq.key" [label]="freq.value">
+                    </option>
+                </select>
+
+            </div>
+            <div class="form-group">
+                <label class="form-control-label">Day of the week</label>
+                <select class="form-control" ngModel name="days">
+                    <option *ngFor="let day of days | keyvalue" [ngValue]="day.key" [label]="day.value">
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label">Time</label>
+                <input type="time" required id="time" ngModel name="time" placeholder="Please enter the scheduled time">
+            </div>
+            <div class="form-group">
+                <label class="form-control-label">Duration</label>
+                <input type="number" required id="duration" ngModel name="duration"
+                    placeholder="Please enter the duration in minutes.">
+            </div>
+        </form>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="circle">
+            <div class="fa fa-long-arrow-right next" id="next1" (click)="validateSchedular(createSchedularForm)"></div>
+        </div>
+    </div>
+</div>
