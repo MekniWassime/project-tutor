@@ -1,8 +1,9 @@
 import { type } from "os";
-import { Mentor } from "src/auth/mentor.entity";
+import { Mentor } from "src/auth/entity/mentor.entity";
 import { EnrollmenEntity } from "src/enrollment/entities/enrollment.entity";
 import { Timestamp } from "src/generics/timestamps";
 import { PackageEntity } from "src/package/entities/package.entity";
+import { ReviewEntity } from "src/review/entity/review.entity";
 import { SchedularEntity } from "src/session/entities/schedular.entity";
 import { SessionEntity } from "src/session/entities/session.entity";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
@@ -75,4 +76,13 @@ export class CourseEntity extends Timestamp{
         }
     )
     enrollments: EnrollmenEntity[];
+
+    @OneToMany(
+        type => ReviewEntity,
+        (review) => review.course,
+        {
+            cascade: true
+        }
+    )
+    reviews: ReviewEntity[];
 }

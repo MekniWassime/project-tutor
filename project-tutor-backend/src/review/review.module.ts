@@ -3,7 +3,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ForgottenPassword } from 'src/auth/entity/forgottenPassword.entity';
 import { Mentor } from 'src/auth/entity/mentor.entity';
-import { CourseEntity } from 'src/course/entity/course.entity';
+import { CourseEntity } from 'src/course/entities/course.entity';
 import { EmailVerif } from 'src/mail/entity/mailVerif.entity';
 import { SimpleUserEntity } from 'src/simple-user/entity/simpleUser.entity';
 import { ReviewEntity } from './entity/review.entity';

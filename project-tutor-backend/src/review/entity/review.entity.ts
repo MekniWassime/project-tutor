@@ -1,4 +1,4 @@
-import { CourseEntity } from "src/course/entity/course.entity";
+import { CourseEntity } from "src/course/entities/course.entity";
 import { SimpleUserEntity } from "src/simple-user/entity/simpleUser.entity";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 

@@ -13,17 +13,7 @@ import { SimpleUserController } from './simple-user.controller';
 import { SimpleUserService } from './simple-user.service';
 
 @Module({
-  imports:[TypeOrmModule.forRoot({
-    type: 'mysql',
-    host: 'localhost',
-    port: 3306,
-    username: 'root',
-    password: 'root',
-    database: 'projetaymen',
-    entities: [SimpleUserEntity, Mentor, ForgottenPassword, EmailVerif],
-    synchronize: true,
-    keepConnectionAlive: true,
-  }), TypeOrmModule.forFeature([SimpleUserEntity, Mentor, ForgottenPassword, EmailVerif, ReviewEntity]),
+  imports:[TypeOrmModule.forFeature([SimpleUserEntity, Mentor, ForgottenPassword, EmailVerif, ReviewEntity]),
   JwtModule.register({})
   ],
   controllers: [SimpleUserController],

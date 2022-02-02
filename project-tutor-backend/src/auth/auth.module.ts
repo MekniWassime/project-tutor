@@ -18,17 +18,7 @@ import { SimpleUserEntity } from "src/simple-user/entity/simpleUser.entity";
 
 
 @Module({
-    imports: [TypeOrmModule.forRoot({
-        type: 'mysql',
-        host: 'localhost',
-        port: 3306,
-        username: 'root',
-        password: 'root',
-        database: 'projetaymen',
-        entities: [Mentor, ForgottenPassword, EmailVerif, SimpleUserEntity],
-        synchronize: true,
-        keepConnectionAlive: true,
-      }),
+    imports: [
       TypeOrmModule.forFeature([Mentor, ForgottenPassword, EmailVerif, SimpleUserEntity]),
       JwtModule.register({})
     ],

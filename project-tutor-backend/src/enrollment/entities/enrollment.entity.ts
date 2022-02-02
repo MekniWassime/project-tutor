@@ -1,4 +1,4 @@
-import { Mentor } from "src/auth/mentor.entity";
+import { Mentor } from "src/auth/entity/mentor.entity";
 import { CourseEntity } from "src/course/entities/course.entity";
 import { Timestamp } from "src/generics/timestamps";
 import { PackageEntity } from "src/package/entities/package.entity";
