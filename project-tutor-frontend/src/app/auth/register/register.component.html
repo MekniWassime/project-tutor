@@ -1,0 +1,135 @@
+<div class="wrapper">
+  <div class="page-header" style="background-image: url('/assets/img/login-image.jpg');">
+      <div class="filter"></div>
+          <div class="container ">
+              <div class="row  justify-content-center ">  <!--justify content-->
+                  <div class="col-lg-4 col-sm-4 mr-auto ml-auto ">
+                    <div class="card card-register  ">
+                        <h3 class="title">Join Us</h3>
+                        <!-- <div class="social-line text-center">
+                            <a href="#pablo" class="btn btn-neutral btn-facebook btn-just-icon">
+                                <i class="fa fa-facebook-square"></i>
+                            </a>
+                            <a href="#pablo" class="btn btn-neutral btn-google btn-just-icon">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                            <a href="#pablo" class="btn btn-neutral btn-twitter btn-just-icon">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </div> -->
+                        <form class="register-form" (ngSubmit)="onSubmit(registerFormulaire)" #registerFormulaire="ngForm">
+
+                          <label>Full Name</label>
+                          <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                  <i class="nc-icon nc-single-02" style="margin-top: 5px;"></i>
+                              </span>
+                            </div>
+
+                              <input type="text" class="form-control" placeholder=" Full Name"name="name" required [(ngModel)]="user.name" #name="ngModel" (focus)="focus=true" (blur)="focus=false" >
+
+                          </div>
+                          <div [hidden]="name.valid || name.pristine"
+                          class="alert alert-danger">
+                             Name is required
+                          </div>
+
+
+
+                            <label>Email</label>
+                            <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="nc-icon nc-email-85" style="margin-top: 5px;"></i>
+                                </span>
+                              </div>
+                              <input type="email" class="form-control" name="email"  placeholder="Email" (focus)="focus=true" (blur)="focus=false" required [(ngModel)]="user.email" #email="ngModel" >
+
+
+                            </div>
+                            <div [hidden]="email.valid || email.pristine"
+                            class="alert alert-danger">
+                               Email is required
+                            </div>
+
+
+                            <label>Password</label>
+                            <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="nc-icon nc-key-25" style="margin-top: 5px;"></i>
+                                </span>
+                              </div>
+                              <input type="password" class="form-control" name="passwored"  placeholder="Password" required [(ngModel)]="user.password" #password="ngModel"  (focus)="focus1=true" (blur)="focus1=false">
+
+
+                            </div>
+                            <div [hidden]="password.valid || password.pristine"
+                            class="alert alert-danger">
+                               Password is required
+                            </div>
+
+
+                            <label>Repeat Password</label>
+                            <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <i class="nc-icon nc-key-25" style="margin-top: 5px;"></i>
+                                </span>
+                              </div>
+                              <input type="password" class="form-control" name="repeatedPassword" placeholder="Repeat Password" required [(ngModel)]="user.repeatedPassword" #repeatedPassword="ngModel" (focus)="focus1=true" (blur)="focus1=false" >
+
+
+                            </div>
+                            <div [hidden]="repeatedPassword.valid || repeatedPassword.pristine"
+                              class="alert alert-danger">
+                                 Repeat your password please
+                              </div>
+
+                              <br>
+                            <div [hidden]="areEqual(repeatedPassword, password ) ||repeatedPassword.pristine"
+                            class="alert alert-danger">
+                              Passwords doesn't match
+                            </div>
+
+
+                            <div class="container " >
+                              <div class="row" style="text-align: center; margin-top: 20px;">
+                                <div class="form-check-radio col">
+                                  <label class="form-check-label" style="margin:0px !important; font-weight: 500;">
+                                    <input class="form-check-input" type="radio" name="role" id="mentor" value="mentor" [checked]="" #role="ngModel" [(ngModel)]="user.role">
+                                    Mentor
+                                    <span class="form-check-sign"></span>
+                                  </label>
+                                </div>
+                                <div class="form-check-radio col">
+                                  <label class="form-check-label" style="margin:0px !important; font-weight: 500;">
+                                    <input class="form-check-input" type="radio" name="role" id="user" value="user"  #role="ngModel" [(ngModel)]="user.role" >
+                                   User
+                                    <span class="form-check-sign"></span>
+                                  </label>
+                                </div>
+                                <div [hidden]="role.pristine || role.valid"
+                                class="alert alert-danger">
+                                  Choose a role
+                                </div>
+
+                          </div>
+                          </div>
+                              <!-- <div class="justify-content-center"> -->
+                            <button class="btn btn-danger btn-block btn-round " (click)="onSubmit(registerFormulaire)"   [disabled]="!registerFormulaire.form.valid" [routerLink]="['/user/profile/show']" style=" margin-left:36%;">Register</button>
+                              <!-- </div> -->
+                        </form>
+                        <div class="forgot" >
+                            <a [routerLink]="['/login']" routerLinkActive="router-link-active"  class="btn btn-link btn-danger">Already have an account?</a>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="footer register-footer text-center">
+                  <h6>&copy;{{test | date: 'yyyy'}}, made with <i class="fa fa-heart heart"></i> By GL4 INSAT</h6>
+              </div>
+          </div>
+  </div>
+</div>
