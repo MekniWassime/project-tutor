@@ -1,6 +1,6 @@
-import { IsDate, IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
-export class AuthDto {
+export class SimpleUserDto {
 
     @IsNotEmpty()
     @IsEmail()
@@ -13,10 +13,6 @@ export class AuthDto {
     @IsNotEmpty()
     @IsString()
     name: string;
-
-    @IsNotEmpty()
-    @IsString()
-    occupation: string;
 
     @IsNotEmpty()
     @IsNumber()

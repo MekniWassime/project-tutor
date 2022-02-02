@@ -1,53 +1,69 @@
-import { ForbiddenException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { ForbiddenException, HttpException, HttpStatus, Injectable, UploadedFile } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Not, Repository } from 'typeorm';
 import { AuthDto, LoginDto } from './dto';
-import { Mentor } from './mentor.entity';
+import { Mentor } from './entity/mentor.entity';
 import * as bcrypt from 'bcrypt';
 import { Tokens } from './types';
 
 import * as nodemailer from 'nodemailer';
 import {default as config} from '../config';
-import { ForgottenPassword } from './forgottenPassword.entity';
+import { ForgottenPassword } from './entity/forgottenPassword.entity';
+import { MailService } from 'src/mail/mail.service';
+import { SimpleUserEntity } from 'src/simple-user/entity/simpleUser.entity';
 
 @Injectable()
 export class AuthService {
     constructor(
         @InjectRepository(Mentor) private readonly mentorRepository: Repository<Mentor>,
         @InjectRepository(ForgottenPassword) private readonly forgottenPasswordRepository: Repository<ForgottenPassword>,
-        private jwtService: JwtService
+        @InjectRepository(SimpleUserEntity) private readonly simpleUserRepository: Repository<SimpleUserEntity>,
+        private jwtService: JwtService,
+        private mailService: MailService,
     ) {}
 
     
 
-    async register(dto: AuthDto): Promise<Tokens> {
+    async register(dto: AuthDto, @UploadedFile() file): Promise<Tokens> {
         const hash = await this.hashData(dto.password);
 
         const newMentor = await this.mentorRepository.save({
             email: dto.email,
             password: hash,
             name: dto.name,
+            image: file.filename,
+            phone: dto.phone,
+            birthdate: dto.birthdate,
             occupation: dto.occupation,
-            hashedRT: ''
+            hashedRT: '',
+            confirmed: false,
         })
 
+        this.mailService.createEmailToken(dto.email);
+        this.mailService.sendEmailVerification(dto.email);
+
         const tokens = await this.getTokens(newMentor.id, newMentor.email);
-        await this.updateRtHash(newMentor.id, tokens.refresh_token);
+        await this.updateRtHash(newMentor.id, tokens.refresh_token, "mentor");
         return tokens;
     }
 
     async login(dto: LoginDto) {
-        const mentor = this.mentorRepository.findOne({where:{email: dto.email} },);
+        let user = null;
+        if (dto.role == "mentor") {
+            user = this.mentorRepository.findOne({where:{email: dto.email} },);
+        } else {
+            user = this.simpleUserRepository.findOne({where:{email: dto.email} },);
+        }
 
-        if (!mentor) throw new ForbiddenException('Access Denied');
+        if (!user) throw new ForbiddenException('Access Denied');
         
         const passHashed = this.hashData(dto.password);
-        const passwordMatches = await bcrypt.compare((await mentor).password, await passHashed);
-        if (!passHashed) throw new ForbiddenException('Access Denied');
+        const passwordMatches = await bcrypt.compare((await user).password, await passHashed);
+        if (!passwordMatches) throw new ForbiddenException('Access Denied');
     
-        const tokens = await this.getTokens((await mentor).id, (await mentor).email);
-        await this.updateRtHash((await mentor).id, tokens.refresh_token);
+        const tokens = await this.getTokens((await user).id, (await user).email);
+        await this.updateRtHash((await user).id, tokens.refresh_token, dto.role);
         return tokens;
     }
 
@@ -65,7 +81,7 @@ export class AuthService {
         if (!rtMatches) throw new ForbiddenException('Access Denied');
 
         const tokens = await this.getTokens((await mentor).id, (await mentor).email);
-        await this.updateRtHash((await mentor).id, tokens.refresh_token);
+        await this.updateRtHash((await mentor).id, tokens.refresh_token, "mentor");
         return tokens;
     }
 
@@ -203,11 +219,23 @@ export class AuthService {
         }
     }
 
-    async updateRtHash(mentorId: number, rt: string) {
+    async updateRtHash(mentorId: number, rt: string, role: string) {
         const hash = await this.hashData(rt);
-        const mentor = await this.mentorRepository.findOne({where:{id: mentorId}});
-        mentor.hashedRT = hash;
-        await this.mentorRepository.save(mentor);
+        let user = null;
+        if (role == "mentor") {
+            const user = await this.mentorRepository.findOne({where:{id: mentorId}});
+        } else {
+            const user = await this.simpleUserRepository.findOne({where:{id: mentorId}});
+        }
+        user.hashedRT = hash;
+        if (role == "mentor") {
+            await this.mentorRepository.save(user);
+        } else {
+            await this.simpleUserRepository.save(user);
+        }
     }
 
+    async updateImage(id: number, filePath: string) {
+        return this.mentorRepository.update({id: id},{image: filePath});
+    }
   }

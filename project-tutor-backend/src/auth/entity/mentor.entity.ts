@@ -16,8 +16,20 @@ export class Mentor {
     name: string;
 
     @Column()
+    image: string;
+
+    @Column()
+    phone: number;
+
+    @Column()
+    birthdate: string;
+
+    @Column()
     occupation: string;
 
     @Column()
     hashedRT: string;
+
+    @Column()
+    confirmed: boolean;
 }

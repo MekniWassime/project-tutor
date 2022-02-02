@@ -1,20 +1,37 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Req, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import * as bcrypt from 'bcrypt'; 
-import { Mentor } from './mentor.entity';
+import { Mentor } from './entity/mentor.entity';
 import { AuthDto, LoginDto, ResetPasswordDto } from './dto';
 import { AuthGuard } from '@nestjs/passport';
 import { Tokens } from './types';
 import { Request } from 'express';
+import { diskStorage } from 'multer';
+import {v4 as uuidv4 } from 'uuid';
+import { FileInterceptor } from '@nestjs/platform-express';
+import path from 'path';
+
+export const stockage = {
+    storage: diskStorage({
+    destination: './uploads/profileimages',
+    filename: (req, file, cb) => {
+        const filename: string = path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
+        const extension: string = path.parse(file.originalname).ext;
+
+        cb(null, `${filename}${extension}`)
+        }
+    }) 
+}
 
 @Controller('auth')
 export class AuthController {
     constructor(private readonly authService: AuthService){}
 
     @Post('register')
+    @UseInterceptors(FileInterceptor('file', stockage))
     @HttpCode(HttpStatus.CREATED)
-    async register(@Body() dto: AuthDto): Promise<Tokens> {
-        const register = this.authService.register(dto);
+    async register(@Body() dto: AuthDto, @UploadedFile() file): Promise<Tokens> {
+        const register = this.authService.register(dto, file);
         return register;
     }
 
@@ -81,5 +98,14 @@ export class AuthController {
         } catch(error) {
         return new Error("RESET_PASSWORD.CHANGE_PASSWORD_ERROR");
         }
+    }
+
+    @UseGuards(AuthGuard('jwt'))
+    @Post('upload')
+    @UseInterceptors(FileInterceptor('file', stockage))
+    @HttpCode(HttpStatus.OK)
+    public async uploadFile(@UploadedFile() file, @Req() req: Request) {
+        const user = req.user;
+        return this.authService.updateImage(user['sub'], file.filename);
     }
 }
