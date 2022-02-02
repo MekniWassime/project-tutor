@@ -1,0 +1,96 @@
+
+  <div class="wrapper" >
+  <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/fabio-mangione.jpg');">
+      <div class="filter " background-color=" #ff806a" style= ></div>
+  </div>
+  <div class="section profile-content">
+      <div class="container">
+        <section *ngIf="user!=null ; else loadingspinner" class="section_gap">
+          <div class="owner">
+              <app-user-profile-image [image]="user.image"></app-user-profile-image>
+              <app-user-profile-name [name]="  user.name | titlecase "></app-user-profile-name>
+          </div>
+
+          <app-user-profile-email [email]="user.email"></app-user-profile-email>
+          <app-user-profile-birthdate [birthdate]="user.birthdate"></app-user-profile-birthdate>
+          <app-user-profile-phone [phone]="user.phone"></app-user-profile-phone>
+
+          <div class="row margin-edit"  >
+            <div  class="col-6 ml-auto mr-auto text-center">
+              <br />
+              <a   class="btn btn-danger btn-round"  [routerLink]="['/user/profile/edit']"><i class="fa fa-cog"></i>Edit</a>
+            </div>
+          </div>
+        </section>
+          <br/>
+      </div>
+  </div>
+  </div>
+
+<ng-template #loadingspinner>
+  <br><br><br>
+            <app-loading-spinner></app-loading-spinner>
+</ng-template>
+<!------------------------------->
+<!------------------------------------------------------------------------------->
+<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+<div class="nav-tabs-navigation">
+  <div class="nav-tabs-wrapper">
+      <!-- <ngb-tabset [justify]="'center'"> -->
+          <!-- <ngb-tab title="Follows"> -->
+              <ng-template ngbTabContent >
+                  <div class="row following" id="follows">
+                      <div class="col-md-6 ml-auto mr-auto">
+                          <ul class="list-unstyled follows">
+                              <li>
+                                  <div class="row">
+                                      <div class="col-md-2 col-sm-2 ml-auto mr-auto">
+                                          <img src="/assets/img/clem-onojeghuo-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                      </div>
+                                      <div class="col-md-7 col-sm-4 ml-auto">
+                                          <h6>Flume<br/><small>Musical Producer</small></h6>
+                                      </div>
+                                      <div class="col-md-3 col-sm-2 ml-auto mr-auto">
+                                          <div class="form-check">
+                                            <label class="form-check-label">
+                                              <input class="form-check-input" type="checkbox" value="" checked="">
+                                              <span class="form-check-sign"></span>
+                                            </label>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </li>
+                              <hr />
+                              <li>
+                                  <div class="row">
+                                      <div class="col-md-2 col-sm-2 ml-auto mr-auto">
+                                          <img src="/assets/img/ayo-ogunseinde-2.jpg" alt="Circle Image" class="img-circle img-no-padding img-responsive">
+                                      </div>
+                                      <div class="col-md-7 col-sm-4 ml-auto">
+                                          <h6>Banks<br /><small>Singer</small></h6>
+                                      </div>
+                                      <div class="col-md-3 col-sm-2 ml-auto mr-auto">
+                                          <div class="form-check">
+                                            <label class="form-check-label">
+                                              <input class="form-check-input" type="checkbox" value="" checked="">
+                                              <span class="form-check-sign"></span>
+                                            </label>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </ng-template>
+          <!-- </ngb-tab> -->
+          <!-- <ngb-tab title="Following"> -->
+              <ng-template ngbTabContent>
+                  <h3 class="text-muted">Not following anyone yet :(</h3>
+                  <br>
+                  <button class="btn btn-warning btn-round">Find artists</button>
+              </ng-template>
+          <!-- </ngb-tab> -->
+      <!-- </ngb-tabset> -->
+  </div>
+</div>

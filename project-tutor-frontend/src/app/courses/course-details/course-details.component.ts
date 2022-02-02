@@ -24,7 +24,7 @@ export class CourseDetailsComponent implements OnInit {
       CourseCategory.Category1,
       5,
       "afafafa",
-      new Mentor("name faghe", "name.fgahe@gmail.com"),
+      new Mentor(1,"name faghe", "name.fgahe@gmail.com",new Date("14-01-1999"),98765432,'path','tutor'),
       [
         new PaymentInfo("package 1", 20, 2),
         new PaymentInfo("package 2", 30, 5),

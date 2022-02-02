@@ -1,0 +1,141 @@
+
+  <div class="wrapper" >
+    <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/fabio-mangione.jpg');">
+      <div class="filter " background-color=" #ff806a" style= ></div>
+    </div>
+    <div class="section profile-content">
+      <div class="container">
+        <section *ngIf="user!=null ; else loadingspinner" class="section_gap">
+        <form class="register-form" (ngSubmit)="onSubmit(formulaire)" #formulaire="ngForm">
+          <div class="container">
+
+           <div class="owner">
+              <div class="avatar"  style="margin-right: 180px;">
+                  <img src="/assets/img/joe-gardner-2.jpg" alt="Circle Image"  class="img-circle img-no-padding img-responsive">
+              </div>
+
+              <div class="name">
+                  <!-- <h4 class="title" style="margin-bottom: 15px; font-size: xx-large; margin-left: -50px;">User<br /></h4> -->
+                  <h6 class="description" style="font-size: x-large;margin-bottom: 5%; margin-left: -50px; ">Your Profile Info</h6>
+              </div>
+          </div>
+          </div>
+          <div class="row" style ="margin-left: 110px;margin-bottom: 10px;">
+        <div class="col-6 ml-auto mr-auto text-center" >
+          <div class="row d-flex justify-content-around" >
+            <h6 class="description col-4" style="font-size: large; ">Name</h6>
+            <div class="col-4" style="margin-left: 40px;">
+              <input type="text" class="form-control" name="name" required [(ngModel)]="user.name" #name="ngModel"  style="border-color: black !important; width: 240px;">
+              <div [hidden]="name.valid || name.pristine"
+              class="alert alert-danger">
+                 Name is required
+              </div>
+            </div>
+
+          </div>
+        </div>
+          </div>
+
+          <div class="row" style ="margin-left: 110px; margin-bottom: 10px;">
+              <div class="col-6 ml-auto mr-auto text-center" >
+                <div class="row d-flex justify-content-around" >
+                <h6 class="description col-4" style="font-size: large;">Birthdate</h6>
+                <div class="col-4" style="margin-left: 40px;">
+                  <input type="date" class="form-control" name="birthdate" required [(ngModel)]="user.birthdate" #birthdate="ngModel" style="border-color: black !important; width: 240px;">
+                  <div [hidden]="birthdate.valid || birthdate.pristine"
+                  class="alert alert-danger">
+                     Birthdate is required
+                  </div>
+                </div>
+
+                </div>
+              </div>
+          </div>
+
+          <div class="row" style ="margin-left: 113px; margin-bottom: 10px;">
+
+            <div class="col-6 ml-auto mr-auto text-center" >
+              <div class="row d-flex justify-content-around" >
+              <h6 class="description col-4" style="font-size: large;">Phone</h6>
+              <div class="col-4" style="margin-left: 40px;">
+                <input type="number" class="form-control" name="phone" required [(ngModel)]="user.phone" #phone="ngModel" style="border-color: black !important; width: 240px;">
+                <div [hidden]="phone.valid || phone.pristine"
+                class="alert alert-danger">
+                   Phone is required
+                </div>
+              </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style ="margin-left: 113px; margin-bottom: 10px;">
+
+            <div class="col-6 ml-auto mr-auto text-center" >
+              <div class="row d-flex justify-content-around" >
+              <h6 class="description col-4" style="font-size: large;">Image</h6>
+              <div class="col-4" style="margin-left: 40px;">
+                <angular-file-uploader class="afu-select-btn "[config]="afuConfig"> </angular-file-uploader>
+                <!-- <div [hidden]="phone.valid || phone.pristine"
+                class="alert alert-danger">
+                   Phone is required
+                </div> -->
+              </div>
+
+              </div>
+            </div>
+          </div>
+
+
+            <div class="row" style ="margin-left: 113px; margin-bottom: 10px;">
+
+
+          </div>
+
+          <!-- <div class="row" style ="margin-left: 113px; margin-bottom: 10px;">
+
+            <div class="col-6 ml-auto mr-auto text-center" >
+              <div class="row d-flex justify-content-around" >
+              <h6 class="description col-4" style="font-size: large;">Image</h6>
+              <div class="col-4" style="margin-left: 40px;">
+                <input type="file" class="form-control"  name="image" required [(ngModel)]="user.image" #image="ngModel" style="border-color: black !important; width: 240px;">
+                <div [hidden]="image.valid || image.pristine"
+                class="alert alert-danger">
+                   image is required
+                </div>
+              </div>
+
+              </div>
+            </div>
+          </div> -->
+
+          <!-- <div class="row" style ="margin-left: 113px; margin-bottom: 10px;"> -->
+
+          <!-- <div class="col-6 ml-auto mr-auto text-center" >
+            <div class="row d-flex justify-content-around" >
+            <h6 class="description col-4" style="font-size: large;">Image</h6> -->
+              <!-- <input  type="image" class="form-control" name="image"  [(ngModel)]="user.image" #image="ngModel"> -->
+            <!-- <button   class="btn " onclick="" style="width: 150px; margin-left:75px; "><i class="fa fa-cog"></i>Upload</button> [routerLink]="['/user/profile/show']" -->
+            <!-- </div>
+          </div>
+          </div> -->
+
+
+          <div class="row" style ="margin-left: 27%;" >
+            <div  class="col-6 ml-auto mr-auto text-center">
+              <br />
+              <button   class="btn btn-danger btn-round"  type="button" (click)="onSubmit(formulaire)"   [disabled]="!formulaire.form.valid" [routerLink]="['/user/profile/show']"><i class="fa fa-cog"></i>Done</button>
+            </div>
+          </div>
+        </form>
+      </section>
+
+        <br/>
+      </div>
+    </div>
+  </div>
+
+<ng-template #loadingspinner>
+  <br><br><br>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>
