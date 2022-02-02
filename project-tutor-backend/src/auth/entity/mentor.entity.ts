@@ -1,5 +1,8 @@
-import {BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import * as bcrypt from 'bcrypt'; 
+import { CourseEntity } from "src/course/entities/course.entity";
+import { EnrollmenEntity } from "src/enrollment/entities/enrollment.entity";
+import { AttendanceEntity } from "src/enrollment/entities/attendance.entity";
 
 @Entity('mentors')
 export class Mentor {
@@ -32,4 +35,32 @@ export class Mentor {
 
     @Column()
     confirmed: boolean;
+    @OneToMany(
+        type => CourseEntity,
+        (course) => course.mentor,
+        {
+            cascade: true
+        }
+    )
+    courses: CourseEntity[];
+
+    @OneToMany(
+        type => EnrollmenEntity,
+        (enroll) => enroll.user,
+        {
+            cascade: true
+        }
+    )
+    enrollments: EnrollmenEntity[];
+
+    @OneToMany(
+        type => AttendanceEntity,
+        (att) => att.user,
+        {
+            cascade: true
+        }
+    )
+    attendances: AttendanceEntity[];
+
+
 }

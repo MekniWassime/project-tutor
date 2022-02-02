@@ -37,7 +37,7 @@ export class SessionController {
       return this.sessionService.remove(+id);
     }
     
-    @UseGuards(AuthGuard('jwt'))
+    // @UseGuards(AuthGuard('jwt'))
     @Post('create/:courseId')
     create(@Param('courseId') courseId: string,@Body() addSessionDto: CreateSessionDTO){
       return this.sessionService.createWithRelation(addSessionDto,courseId);
@@ -68,7 +68,7 @@ export class SessionController {
       return this.schedularService.remove(+id);
     }
     
-    @UseGuards(AuthGuard('jwt'))
+    // @UseGuards(AuthGuard('jwt'))
     @Post('schedular/create/:courseId')
     createSchedular(@Param('courseId') courseId: string,@Body() addSchedularDto: CreateSchedularDto){
       return this.schedularService.createWithRelation(addSchedularDto,courseId);

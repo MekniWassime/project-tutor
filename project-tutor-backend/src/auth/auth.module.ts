@@ -32,9 +32,9 @@ import { SimpleUserEntity } from "src/simple-user/entity/simpleUser.entity";
       TypeOrmModule.forFeature([Mentor, ForgottenPassword, EmailVerif, SimpleUserEntity]),
       JwtModule.register({})
     ],
-    exports: [],
-    controllers: [AuthController,],
-    providers: [AuthService, JwtStrategy, RtStrategy,  MailService],
+    exports: [AuthService],
+    controllers: [AuthController],
+    providers: [AuthService, JwtStrategy, RtStrategy, MailService]
 })
 export class AuthModule {
 }

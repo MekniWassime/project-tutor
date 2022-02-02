@@ -12,6 +12,7 @@ import { PackageService } from './package.service';
     TypeOrmModule.forFeature([
       PackageEntity
     ]), CourseModule
-  ]
+  ],
+  exports:[PackageService]
 })
 export class PackageModule {}

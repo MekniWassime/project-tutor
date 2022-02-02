@@ -1,5 +1,6 @@
 import { type } from "os";
 import { CourseEntity } from "src/course/entities/course.entity";
+import { AttendanceEntity } from "src/enrollment/entities/attendance.entity";
 import { Timestamp } from "src/generics/timestamps";
 import { PackageEntity } from "src/package/entities/package.entity";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
@@ -16,8 +17,6 @@ export class SessionEntity extends Timestamp{
     @Column()
     duration: number
 
-    // user relationship
-
     @ManyToOne(
         type => CourseEntity,
         (course) => course.sessions,
@@ -26,4 +25,13 @@ export class SessionEntity extends Timestamp{
         }
     )
     course: CourseEntity
+
+    @OneToMany(
+        type => AttendanceEntity,
+        (att) => att.session,
+        {
+            cascade: true
+        }
+    )
+    attendances: AttendanceEntity[];
 }

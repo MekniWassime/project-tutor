@@ -14,6 +14,7 @@ import { SchedularEntity } from './entities/schedular.entity';
     TypeOrmModule.forFeature([
       SessionEntity,SchedularEntity
     ]), CourseModule
-  ]
+  ],
+  exports:[SessionService]
 })
 export class SessionModule {}

@@ -1,3 +1,4 @@
+import { CourseDetailsService } from './../course-details.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./course-description.component.css']
 })
 export class CourseDescriptionComponent implements OnInit {
-
-  @Input('description') description:string = '';
-
-  constructor() { }
+  constructor(public courseService: CourseDetailsService) { }
 
   ngOnInit(): void {
   }

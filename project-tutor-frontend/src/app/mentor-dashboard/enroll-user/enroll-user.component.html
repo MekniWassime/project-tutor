@@ -1,0 +1,11 @@
+<div class="fullWidth">
+    <ul class="container">
+    <li *ngFor="let pack of enrollmentService.packages | async">
+        <div class="card"  [ngClass]="{'selected': selectedItem == pack}" (click)="listClick($event, pack)">
+            <app-payment-package [pack]="pack">
+            </app-payment-package>
+        </div>      
+    </li>
+    </ul>
+    <button type="button" class="button block" (click)="submitEnroll()">Submit</button>
+</div>

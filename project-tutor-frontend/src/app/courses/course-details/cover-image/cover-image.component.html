@@ -1,4 +1,4 @@
 <div class="image-container">
-    <img [src]="imageSource" width="100%" alt="course cover image">
-    <div class="after"><app-star-rating readonly [rating]="averageRating"></app-star-rating></div>
+    <img [src]="(courseService.course | async)!.image" width="100%" alt="course cover image">
+    <div class="after"><app-star-rating readonly [rating]="(courseService.course | async)!.averageRating"></app-star-rating></div>
 </div>

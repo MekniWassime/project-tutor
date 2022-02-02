@@ -1,0 +1,127 @@
+body {
+    color: #fff;
+    overflow-x: hidden;
+    height: 100%;
+    background-color: #D1C4E9;
+    background-repeat: no-repeat
+}
+
+.fieldlabels {
+    color: #455A64 !important;
+    text-align: left
+}
+
+input,
+textarea,
+button {
+    /* #651FFF  */
+    background-color: #291b32 !important;
+    padding: 8px 15px 8px 15px;
+    border-radius: 0px !important;
+    margin-bottom: 25px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #2C3E50;
+    background-color: #ECEFF1;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 18px !important;
+    color: #fff !important;
+    font-weight: 300
+}
+
+input:focus,
+textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid #9FA8DA;
+    outline-width: 0;
+    font-weight: 400
+}
+
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0
+}
+
+.circle {
+    position: relative
+}
+
+.fa-long-arrow-right {
+    color: #291b32;
+    background-color: #fff;
+    padding: 12px;
+    margin: 5px;
+    border-radius: 50%;
+    border: 3px solid #291b32;
+    position: absolute;
+    left: min(290px,31vw);
+    top: 20px;
+    top: 12px;
+    cursor: pointer
+}
+
+.fa-long-arrow-right:hover {
+    color: #FFF;
+    background-color: #9356b6
+}
+
+.fa-long-arrow-left {
+    position: absolute;
+    left: min(350px,35vw);
+    top: 20px;
+    color: #fff;
+    cursor: pointer
+}
+
+.check-mark {
+    width: 180px;
+    height: 180px
+}
+.card {
+    background-color: #291b32;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    padding: 60px 40px 40px 40px;
+    z-index: 0;
+    display: none;
+    margin:10vw auto;
+    max-width: min(700px,80vw);
+}
+
+.card.show {
+    display: block
+}
+
+.form-control-label {
+    font-size: 22px !important;
+    color: #fff;
+    letter-spacing: 1px
+}
+
+::placeholder {
+    color: #fff;
+    opacity: 1;
+    font-weight: 300
+}
+
+:-ms-input-placeholder {
+    color: #fff;
+    font-weight: 300
+}
+
+::-ms-input-placeholder {
+    color: #fff;
+    font-weight: 300
+}
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+input.ng-touched.ng-invalid {
+    border-bottom: 1px solid rgb(230, 36, 36);
+}

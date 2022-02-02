@@ -1,2 +1,2 @@
 <app-course-title>Description:</app-course-title>
-<p>{{description}}</p>
+<p>{{(courseService.course | async)!.description}}</p>

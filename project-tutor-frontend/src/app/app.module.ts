@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { UserProfilePhoneComponent } from './profile/user-profile/user-profile-p
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
 
+import { SessionsComponent } from './mentor-dashboard/sessions/sessions.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +41,10 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
     FormsModule,
     ReactiveFormsModule,
     AngularFileUploaderModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports:[AppRoutingModule]
 })
 export class AppModule { }

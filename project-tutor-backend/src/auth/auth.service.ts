@@ -12,16 +12,19 @@ import {default as config} from '../config';
 import { ForgottenPassword } from './entity/forgottenPassword.entity';
 import { MailService } from 'src/mail/mail.service';
 import { SimpleUserEntity } from 'src/simple-user/entity/simpleUser.entity';
+import { CrudService } from 'src/generics/crud.service';
 
 @Injectable()
-export class AuthService {
+export class AuthService extends CrudService<Mentor> {
     constructor(
         @InjectRepository(Mentor) private readonly mentorRepository: Repository<Mentor>,
         @InjectRepository(ForgottenPassword) private readonly forgottenPasswordRepository: Repository<ForgottenPassword>,
         @InjectRepository(SimpleUserEntity) private readonly simpleUserRepository: Repository<SimpleUserEntity>,
         private jwtService: JwtService,
         private mailService: MailService,
-    ) {}
+    ) {
+        super(mentorRepository)
+    }
 
     
 

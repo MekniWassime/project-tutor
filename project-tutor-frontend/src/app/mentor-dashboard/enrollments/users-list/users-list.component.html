@@ -1,0 +1,9 @@
+<div class="fullWidth">
+    <ul class="container">
+    <li *ngFor="let enrollment of enrollmentService.enrollments | async">
+        <div [ngClass]="{'selected': selectedItem == enrollment}" (click)="listClick($event, enrollment)">
+            <app-user-card [enrollment]="enrollment" ></app-user-card>
+        </div>      
+    </li>
+    </ul>
+</div>

@@ -5,13 +5,13 @@ export class CrudService<Entity> {
   constructor(private repository: Repository<Entity>) {}
 
   findAll(options): Promise<Entity[]> {
-    return this.repository.find();
+    return this.repository.find(options);
   }
   create(object): Promise<Entity> {
     return this.repository.save(object);
   }
   findOne(id: number): Promise<Entity> {
-    return this.repository.findOne(id);
+    return this.repository.findOne(id, {loadRelationIds:true});
   }
   async update(id: number, object): Promise<Entity> {
     const newObject = await this.repository.preload({

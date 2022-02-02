@@ -1,3 +1,4 @@
+import { CourseDetailsService } from './../course-details.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { PaymentInfo } from '../../models/payment-info';
 
@@ -7,9 +8,7 @@ import { PaymentInfo } from '../../models/payment-info';
   styleUrls: ['./course-informations.component.css']
 })
 export class CourseInformationsComponent implements OnInit {
-
-  @Input("payment-info-list") paymentInfoList! : PaymentInfo[];
-  constructor() { }
+  constructor(public courseService:CourseDetailsService) { }
 
   ngOnInit(): void {
   }
