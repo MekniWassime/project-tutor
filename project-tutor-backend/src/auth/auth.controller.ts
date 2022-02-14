@@ -101,12 +101,14 @@ export class AuthController {
         }
     }
 
-    //@UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'))
     @Post('upload')
-    @UseInterceptors(FileInterceptor('file', stockage))
+    //@UseInterceptors(FileInterceptor('file', stockage))
     @HttpCode(HttpStatus.OK)
-    public async uploadFile(@UploadedFile() file, @Req() req: Request) {
-        const user = req.user;
-        return this.authService.updateImage(user['sub'], file.filename);
+    public async uploadFile(@Body() body) {
+       // const user = req.user;
+        console.log("updating user");
+        console.log(body)
+        //return this.authService.updateImage(user['sub'], file.filename);
     }
 }

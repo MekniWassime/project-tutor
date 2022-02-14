@@ -19,11 +19,15 @@ export class EditUserProfileComponent implements OnInit {
     // console.log(formulaire.value['birthdate']);
     let formData = new FormData();
     formData.append('photo', this.file!, this.file!.name);
+    formData.append('form',formulaire.value)
+    console.log("tetetetetetet");
+    console.log(formData);
+    console.log(formulaire.value);
 
     try {
       const response = await fetch('http://localhost:3000/auth/upload', {
         method: 'POST',
-        body: formData,
+        body: formulaire.value,
       });
 
       if (!response.ok) {
@@ -62,9 +66,13 @@ export class EditUserProfileComponent implements OnInit {
     return this.http.post<any>(`http://localhost:3000/auth/upload`, { formData });
   }
 
-  onFileChange(fileChangeEvent: { target: { files: any[]; }; }) {
-    this.file = fileChangeEvent.target.files[0];
-    
+  onFileChange(event: any) {
+    const element = event.currentTarget as HTMLInputElement;
+    if(element.files!=null){
+      this.file = element.files[0];
+    }else{
+      this.file = undefined;
+    }
   }
 
   onFileSelected(event: any){

@@ -1,6 +1,7 @@
+import { AuthTokenInterceptors } from './auth/auth.token.interceptors';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,8 +45,9 @@ import { AuthService } from './auth.service';
     AngularFileUploaderModule,
     HttpClientModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptors, multi: true },],
   bootstrap: [AppComponent],
-  exports:[AppRoutingModule]
+  exports: [AppRoutingModule]
 })
 export class AppModule { }
