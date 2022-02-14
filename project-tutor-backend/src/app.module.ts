@@ -20,6 +20,9 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { SimpleUserEntity } from './simple-user/entity/simpleUser.entity';
 import { EmailVerif } from './mail/entity/mailVerif.entity';
 import { ReviewEntity } from './review/entity/review.entity';
+import { MailController } from './mail/mail.controller';
+import { MailerService } from '@nestjs-modules/mailer';
+import { MailService } from './mail/mail.service';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -33,12 +36,12 @@ import { ReviewEntity } from './review/entity/review.entity';
     synchronize: true,
     keepConnectionAlive: true,
   }),
-  TypeOrmModule.forFeature([PackageEntity,CourseEntity, SessionEntity,SchedularEntity, Mentor,ForgottenPassword, EnrollmenEntity,AttendanceEntity]),
+  TypeOrmModule.forFeature([PackageEntity,CourseEntity, SessionEntity,SchedularEntity,EmailVerif, Mentor,ForgottenPassword, EnrollmenEntity,AttendanceEntity]),
   PackageModule,CourseModule, SessionModule, AuthModule, SimpleUserEntity, Mentor, ForgottenPassword, EmailVerif, ReviewEntity,
   ScheduleModule.forRoot(),
   EnrollmentModule,
  ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, MailController],
+  providers: [AppService, MailService],
 })
 export class AppModule {}

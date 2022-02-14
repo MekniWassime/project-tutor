@@ -30,7 +30,7 @@ export class Mentor {
     @Column()
     occupation: string;
 
-    @Column()
+    @Column({nullable:true})
     hashedRT: string;
 
     @Column()

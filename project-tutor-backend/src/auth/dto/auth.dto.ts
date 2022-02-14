@@ -25,4 +25,6 @@ export class AuthDto {
     @IsNotEmpty()
     birthdate: string;
 
+    @IsString()
+    role: string;
 }

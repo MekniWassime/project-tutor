@@ -19,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
 
 import { SessionsComponent } from './mentor-dashboard/sessions/sessions.component';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { SessionsComponent } from './mentor-dashboard/sessions/sessions.componen
     AngularFileUploaderModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
   exports:[AppRoutingModule]
 })

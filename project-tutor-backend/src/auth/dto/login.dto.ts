@@ -13,4 +13,5 @@ export class LoginDto {
     @IsNotEmpty()
     @IsString()
     role: string;
+
 }

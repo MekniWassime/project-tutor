@@ -75,7 +75,8 @@
               <div class="row d-flex justify-content-around" >
               <h6 class="description col-4" style="font-size: large;">Image</h6>
               <div class="col-4" style="margin-left: 40px;">
-                <angular-file-uploader class="afu-select-btn "[config]="afuConfig"> </angular-file-uploader>
+                <!-- <angular-file-uploader class="afu-select-btn "[config]="afuConfig"> </angular-file-uploader> -->
+                <input type="file" onChange="{(ev) => this.onFileChange(ev)}" />
                 <!-- <div [hidden]="phone.valid || phone.pristine"
                 class="alert alert-danger">
                    Phone is required

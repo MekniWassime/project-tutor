@@ -28,10 +28,10 @@ export class AuthController {
     constructor(private readonly authService: AuthService){}
 
     @Post('register')
-    @UseInterceptors(FileInterceptor('file', stockage))
+    //@UseInterceptors(FileInterceptor('file', stockage))
     @HttpCode(HttpStatus.CREATED)
-    async register(@Body() dto: AuthDto, @UploadedFile() file): Promise<Tokens> {
-        const register = this.authService.register(dto, file);
+    async register(@Body() dto: AuthDto,/* @UploadedFile() file*/): Promise<Tokens> {
+        const register = this.authService.register(dto, /*file*/);
         return register;
     }
 
@@ -41,11 +41,12 @@ export class AuthController {
         return this.authService.login(dto);
     }
 
-    @UseGuards(AuthGuard('jwt'))
-    @Get('laughs')
-    getLaughs(): string {
-        return 'HaHaHaHaHaHaHaHaHaHaHa';
+    //@UseGuards(AuthGuard('jwt'))
+    @Get('credentials/:id')
+    async fetchDataProfile(@Param() params) {
+        return this.authService.findAllProfile(params.id);
     }
+
 
     @UseGuards(AuthGuard('jwt'))
     @Post('logout')
@@ -60,7 +61,7 @@ export class AuthController {
     @HttpCode(HttpStatus.OK)
     async refreshTokens(@Req() req: Request) {
         const user = req.user;
-        return this.authService.refreshTokens(user['sub'], user['refreshToken'])
+        return this.authService.refreshTokens(user['sub'], user['refreshToken'], user['role'])
     }
 
     @Get('reset-password/:email')
@@ -100,7 +101,7 @@ export class AuthController {
         }
     }
 
-    @UseGuards(AuthGuard('jwt'))
+    //@UseGuards(AuthGuard('jwt'))
     @Post('upload')
     @UseInterceptors(FileInterceptor('file', stockage))
     @HttpCode(HttpStatus.OK)

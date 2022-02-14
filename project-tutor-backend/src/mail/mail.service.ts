@@ -64,7 +64,7 @@ export class MailService {
           });
         
             let mailOptions = {
-              from: '"Company" <' + config.mail.user + '>', 
+              from: '"TutorHUB" <' + config.mail.user + '>', 
               to: email, // list of receivers (separated by ,)
               subject: 'Verify Email', 
               text: 'Verify Email', 

@@ -28,25 +28,25 @@ export class AuthService extends CrudService<Mentor> {
 
     
 
-    async register(dto: AuthDto, @UploadedFile() file): Promise<Tokens> {
-        const hash = await this.hashData(dto.password);
+    async register(dto: AuthDto/*, @UploadedFile() file*/): Promise<Tokens> {
+        const hash = await this.hashData("rami");
 
         const newMentor = await this.mentorRepository.save({
             email: dto.email,
             password: hash,
             name: dto.name,
-            image: file.filename,
+            image:'jjjj', //file.filename,
             phone: dto.phone,
             birthdate: dto.birthdate,
             occupation: dto.occupation,
-            hashedRT: '',
+            hashedRT:"",
             confirmed: false,
         })
 
         this.mailService.createEmailToken(dto.email);
         this.mailService.sendEmailVerification(dto.email);
 
-        const tokens = await this.getTokens(newMentor.id, newMentor.email);
+        const tokens = await this.getTokens(newMentor.id, newMentor.email, dto.role);
         await this.updateRtHash(newMentor.id, tokens.refresh_token, "mentor");
         return tokens;
     }
@@ -54,19 +54,22 @@ export class AuthService extends CrudService<Mentor> {
     async login(dto: LoginDto) {
         let user = null;
         if (dto.role == "mentor") {
-            user = this.mentorRepository.findOne({where:{email: dto.email} },);
+            user = await this.mentorRepository.findOne({where:{email: dto.email} },);
         } else {
-            user = this.simpleUserRepository.findOne({where:{email: dto.email} },);
+            user = await this.simpleUserRepository.findOne({where:{email: dto.email} },);
         }
-
+        console.log(user);
         if (!user) throw new ForbiddenException('Access Denied');
         
-        const passHashed = this.hashData(dto.password);
-        const passwordMatches = await bcrypt.compare((await user).password, await passHashed);
+        const passHashed = await this.hashData(dto.password);
+        const passwordMatches = await bcrypt.compare(dto.password, user.password);
+        console.log(passwordMatches);
         if (!passwordMatches) throw new ForbiddenException('Access Denied');
-    
-        const tokens = await this.getTokens((await user).id, (await user).email);
+        console.log("la la la");
+        const tokens = await this.getTokens((await user).id, (await user).email, (await dto).role);
+        console.log(tokens);
         await this.updateRtHash((await user).id, tokens.refresh_token, dto.role);
+        console.log("ra ra ra");
         return tokens;
     }
 
@@ -74,7 +77,7 @@ export class AuthService extends CrudService<Mentor> {
         await this.mentorRepository.update({id:mentorId},{hashedRT: ''})
     }
 
-    async refreshTokens(mentorId: number, rt: string) {
+    async refreshTokens(mentorId: number, rt: string, role: string) {
         const mentor = await this.mentorRepository.findOne({
             where:{id: mentorId}
         });
@@ -83,7 +86,7 @@ export class AuthService extends CrudService<Mentor> {
         const rtMatches = await bcrypt.compare(rt, mentor.hashedRT)
         if (!rtMatches) throw new ForbiddenException('Access Denied');
 
-        const tokens = await this.getTokens((await mentor).id, (await mentor).email);
+        const tokens = await this.getTokens((await mentor).id, (await mentor).email, role);
         await this.updateRtHash((await mentor).id, tokens.refresh_token, "mentor");
         return tokens;
     }
@@ -189,16 +192,17 @@ export class AuthService extends CrudService<Mentor> {
    //     });
    // }
 
-    hashData(data: string) {
-        return bcrypt.hash(data, 10);
+    async hashData(data: string) {
+        return await bcrypt.hash(data, 10);
     }
 
-    async getTokens(mentorId: number, email: string): Promise<Tokens> {
+    async getTokens(mentorId: number, email: string, role: string): Promise<Tokens> {
         const [at, rt] = await Promise.all([
             this.jwtService.signAsync(
             {    
                 sub: mentorId,
-                email
+                email,
+                role: role
             },
             {
                 secret: 'dogyears-ya-wassime',
@@ -208,7 +212,8 @@ export class AuthService extends CrudService<Mentor> {
             this.jwtService.signAsync(
             {
                 sub: mentorId,
-                email
+                email,
+                role: role
             },
             {
                 secret: 'dogyears-ya-B',
@@ -230,9 +235,8 @@ export class AuthService extends CrudService<Mentor> {
         } else {
             const user = await this.simpleUserRepository.findOne({where:{id: mentorId}});
         }
-        user.hashedRT = hash;
         if (role == "mentor") {
-            await this.mentorRepository.save(user);
+            await this.mentorRepository.update({id:mentorId},{hashedRT:hash});
         } else {
             await this.simpleUserRepository.save(user);
         }
@@ -241,4 +245,8 @@ export class AuthService extends CrudService<Mentor> {
     async updateImage(id: number, filePath: string) {
         return this.mentorRepository.update({id: id},{image: filePath});
     }
+
+    async findAllProfile(id: number) {
+        return this.mentorRepository.findOne({where:{id: id}});
+      }
   }

@@ -14,7 +14,7 @@ import { ProfileDto } from './dto/profile.dto';
 @Injectable()
 export class SimpleUserService {
     mailService: any;
-
+ 
     constructor( 
         @InjectRepository(SimpleUserEntity) private readonly simpleUserRepository: Repository<SimpleUserEntity>,
         private authService: AuthService,
@@ -62,7 +62,7 @@ export class SimpleUserService {
 
         this.sendPasswordEmail(dto.email, passwd);
 
-        const tokens = await this.authService.getTokens(newUser.id, newUser.email);
+        const tokens = await this.authService.getTokens(newUser.id, newUser.email, "simpleUser");
         await this.updateRtHash(newUser.id, tokens.refresh_token);
         return tokens;
     }
