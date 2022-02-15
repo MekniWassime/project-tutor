@@ -18,7 +18,7 @@ export class AuthService {
     const access_token =  localStorage.getItem('access_token');
     if(access_token!=null){
       const decodedUser = this.jwtHelper.decodeToken(access_token);
-      this.userInfo = decodedUser;
+      this.userInfo.next(decodedUser);
       return decodedUser;
     }
   }
