@@ -23,6 +23,7 @@ import { SessionsComponent } from './mentor-dashboard/sessions/sessions.componen
 import { AuthService } from './auth.service';
 import { LandingComponent } from './landing/landing.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
     UserProfilePhoneComponent,
     LandingComponent,
     AboutUsComponent,
+    ContactUsComponent,
   ],
   imports: [
     BrowserModule,

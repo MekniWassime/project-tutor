@@ -20,6 +20,7 @@ import { EditUserProfileComponent } from './profile/edit-user-profile/edit-user-
 import { FooterComponent } from './shared/footer/footer.component';
 import { LandingComponent } from './landing/landing.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const routes: Routes = [{path:"login", component:LoginComponent},
 {path:"register", component:RegisterComponent},
@@ -35,6 +36,7 @@ const routes: Routes = [{path:"login", component:LoginComponent},
 },
 {path:'landing', component:LandingComponent},
 {path:'aboutus', component:AboutUsComponent},
+{path:'contactus', component:ContactUsComponent},
 {
   path: "mentorDashboard", children: [
     // { path: 'course/:id', component: CourseDetailsComponent,
