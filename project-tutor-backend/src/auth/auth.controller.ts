@@ -10,13 +10,14 @@ import { diskStorage } from 'multer';
 import {v4 as uuidv4 } from 'uuid';
 import { FileInterceptor } from '@nestjs/platform-express';
 import path from 'path';
+import { parse } from 'path-posix';
 
 export const stockage = {
     storage: diskStorage({
     destination: './uploads/profileimages',
     filename: (req, file, cb) => {
-        const filename: string = path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
-        const extension: string = path.parse(file.originalname).ext;
+        const filename: string = parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
+        const extension: string = parse(file.originalname).ext;
 
         cb(null, `${filename}${extension}`)
         }
@@ -101,14 +102,16 @@ export class AuthController {
         }
     }
 
-    @UseGuards(AuthGuard('jwt'))
+    //@UseGuards(AuthGuard('jwt'))
     @Post('upload')
-    //@UseInterceptors(FileInterceptor('file', stockage))
+    @UseInterceptors(FileInterceptor('file', stockage))
     @HttpCode(HttpStatus.OK)
-    public async uploadFile(@Body() body) {
+    public async uploadFile(@UploadedFile() file, @Body() body) {
        // const user = req.user;
+        console.log("updating file");
+        console.log(file);
         console.log("updating user");
-        console.log(body)
+        console.log(body);
         //return this.authService.updateImage(user['sub'], file.filename);
     }
 }

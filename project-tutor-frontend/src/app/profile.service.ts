@@ -23,7 +23,7 @@ export class ProfileService {
     this.httpClient.get<Mentor>(`http://localhost:3000/simple-user/profile/${id}`).subscribe((simpleUser)=>{
       this.mentorSubject.next(simpleUser);
       console.log("ezaeezaea");
-      console.log(simpleUser);
+      console.log();
     })
   } 
 

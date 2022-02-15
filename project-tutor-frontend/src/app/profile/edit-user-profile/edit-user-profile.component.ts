@@ -15,29 +15,11 @@ export class EditUserProfileComponent implements OnInit {
   mentor: Mentor | undefined;
   file: File | undefined;
   async onSubmit(formulaire: NgForm){
-    console.log(formulaire.value);
-    // console.log(formulaire.value['birthdate']);
-    let formData = new FormData();
-    formData.append('photo', this.file!, this.file!.name);
-    formData.append('form',formulaire.value)
-    console.log("tetetetetetet");
-    console.log(formData);
-    console.log(formulaire.value);
-
-    try {
-      const response = await fetch('http://localhost:3000/auth/upload', {
-        method: 'POST',
-        body: formulaire.value,
-      });
-
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-
-      console.log(response);
-    } catch (err) {
-      console.log(err);
-    }
+    var formData: any = new FormData();
+    console.log(this.file);
+    formData.append('file',this.file);
+    formData.append('form',formulaire.value);
+      this.http.post('http://localhost:3000/auth/upload', formData).subscribe((ev) => {})
   } 
   afuConfig = {
 
