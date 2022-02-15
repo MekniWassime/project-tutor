@@ -2,7 +2,7 @@
   <div class="page-header" style="background-image: url('/assets/img/login-image.jpg');">
       <div class="filter"></div>
           <div class="container ">
-              <div class="row  justify-content-center ">  <!--justify content-->
+              <div class="row  justify-content-center ">
                   <div class="col-lg-4 col-sm-4 mr-auto ml-auto ">
                     <div class="card card-register  ">
                         <h3 class="title">Welcome</h3>
@@ -55,9 +55,9 @@
                             <a  [routerLink]="[ '/reset/password']" style="color: #ffffff ; text-decoration: none; font-weight: 500;"  >Forgot password</a> <!---->
                           </div>
 
-                              <!-- <div class="justify-content-center"> -->
+
                             <button class="btn btn-danger  btn-block btn-round " style=" margin-left:36%;" type="button" (click)="onSubmit(loginFormulaire)"   [disabled]="!loginFormulaire.form.valid">Let's GO</button>
-                              <!-- </div> -->
+
                         </form>
                         <div class="forgot" >
                             <div class=row>
@@ -66,11 +66,9 @@
                         </div>
                     </div>
                   </div>
-                  <!--btn btn-link btn-danger-->
+
               </div>
-              <!-- <div class="footer register-footer text-center">
-                  <h6>&copy;{{test | date: 'yyyy'}}, made with <i class="fa fa-heart heart"></i> By GL4 INSAT</h6>
-              </div> -->
+
           </div>
   </div>
 </div>
