@@ -25,6 +25,7 @@ import { LandingComponent } from './landing/landing.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { VerifyTokenComponent } from './verify-token/verify-token.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 @NgModule({
@@ -54,7 +55,7 @@ import { VerifyTokenComponent } from './verify-token/verify-token.component';
     AngularFileUploaderModule,
     HttpClientModule,
   ],
-  providers: [AuthService,
+  providers: [AuthService, AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptors, multi: true },],
   bootstrap: [AppComponent],
   exports: [AppRoutingModule]

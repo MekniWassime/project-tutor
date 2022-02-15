@@ -22,17 +22,19 @@ import { LandingComponent } from './landing/landing.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { VerifyTokenComponent } from './verify-token/verify-token.component';
+import { AuthGuard } from './guards/auth.guard';
 
-const routes: Routes = [{path:"login", component:LoginComponent},
-{path:"register", component:RegisterComponent},
-{path:"reset/password",component:ResetPasswordComponent},
-{path:"user/profile/show",component: UserProfileComponent},
-{path:"user/profile/edit",component: EditUserProfileComponent },
+const routes: Routes = [
+{path:"login", component:LoginComponent, canActivate:[AuthGuard]},
+{path:"register", component:RegisterComponent, },
+{path:"reset/password",component:ResetPasswordComponent,canActivate:[AuthGuard]},
+{path:"user/profile/show",component: UserProfileComponent, canActivate:[AuthGuard] },
+{path:"user/profile/edit",component: EditUserProfileComponent, canActivate:[AuthGuard] },
 {path:'footer', component:FooterComponent},
 {
   path: "courses", children: [
-    { path: '', component: CoursesListComponent },
-    { path: ':id', component: CourseDetailsComponent }
+    { path: '', component: CoursesListComponent, canActivate:[AuthGuard]  },
+    { path: ':id', component: CourseDetailsComponent,canActivate:[AuthGuard]  }
   ]
 },
 {path:'', component:LandingComponent},
@@ -43,14 +45,14 @@ const routes: Routes = [{path:"login", component:LoginComponent},
   path: "mentorDashboard", children: [
     // { path: 'course/:id', component: CourseDetailsComponent,
     // children: [
-      { path: ':courseId/enroll/:userId', component: EnrollUserComponent },
-      { path: ':courseId/enrollments', component: EnrollmentsComponent},
+      { path: ':courseId/enroll/:userId', component: EnrollUserComponent ,canActivate:[AuthGuard] },
+      { path: ':courseId/enrollments', component: EnrollmentsComponent,canActivate:[AuthGuard]},
       { path: ':courseId/sessions', component: SessionsComponent,
         children:[
-          { path: 'schedulars', component: SchedularListComponent },
-          { path: 'sessions', component: SessionsListComponent},
-          { path: 'createSession', component: CreateSessionComponent},
-          { path: 'createSchedular', component: CreateSchedularComponent},
+          { path: 'schedulars', component: SchedularListComponent ,canActivate:[AuthGuard] },
+          { path: 'sessions', component: SessionsListComponent, canActivate:[AuthGuard]},
+          { path: 'createSession', component: CreateSessionComponent,canActivate:[AuthGuard] },
+          { path: 'createSchedular', component: CreateSchedularComponent, canActivate:[AuthGuard]},
 
         ]},
 

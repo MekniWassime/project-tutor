@@ -14,6 +14,7 @@ export class AuthService {
 
   userLogin(login: any): Observable<boolean> {
     console.log(login);
+    console.log(this.userInfo);
     if (login && login.email && login.password) {
     return this.http.post("http://localhost:3000/auth/login",login).pipe(
     map((data: any) => {
