@@ -34,7 +34,7 @@ const routes: Routes = [{path:"login", component:LoginComponent},
     { path: ':id', component: CourseDetailsComponent }
   ]
 },
-{path:'landing', component:LandingComponent},
+{path:'', component:LandingComponent},
 {path:'aboutus', component:AboutUsComponent},
 {path:'contactus', component:ContactUsComponent},
 {

@@ -20,7 +20,7 @@ export class EditUserProfileComponent implements OnInit {
     formData.append('file',this.file);
     formData.append('form',formulaire.value);
       this.http.post('http://localhost:3000/auth/upload', formData).subscribe((ev) => {})
-  } 
+  }
   afuConfig = {
 
     //multiple: false,
@@ -65,11 +65,11 @@ export class EditUserProfileComponent implements OnInit {
 
   async loadUser(): Promise<void> {
     await new Promise(resolve => setTimeout(resolve, 1000));
-    this.user = new User( 1,"foulena ben foulen", "name.fgahe@gmail.com",new Date(1999,1,14,0,0,0,0),98765432,'/assets/img/joe-gardner-2.jpg','passwordii',[]);
+    this.user = new User( 1,"foulena ben foulen", "name.fgahe@gmail.com",new Date(1999,1,14),98765432,'/assets/img/joe-gardner-2.jpg','passwordii',[]);
   }
   async loadMentor(): Promise<void> {
     await new Promise(resolve => setTimeout(resolve, 1000));
-    this.mentor = new Mentor( 9,"foulena ben foulen", "name.fgahe@gmail.com",new Date("14-01-1999"),98765432,'/assets/img/joe-gardner-2.jpg','passwordii','tutor');
+    this.mentor = new Mentor( 9,"foulena ben foulen", "name.fgahe@gmail.com",new Date(1999,1,14),98765432,'/assets/img/joe-gardner-2.jpg','passwordii','tutor');
   }
 
   ngOnInit(): void {
