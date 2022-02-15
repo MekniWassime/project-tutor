@@ -24,6 +24,7 @@ import { AuthService } from './auth.service';
 import { LandingComponent } from './landing/landing.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { VerifyTokenComponent } from './verify-token/verify-token.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     LandingComponent,
     AboutUsComponent,
     ContactUsComponent,
+    VerifyTokenComponent,
   ],
   imports: [
     BrowserModule,

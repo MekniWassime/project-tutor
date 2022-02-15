@@ -1,0 +1,42 @@
+<div class="wrapper">
+  <div class="page-header" style="background-image: url('/assets/img/login-image.jpg');">
+      <div class="filter"></div>
+          <div class="container ">
+              <div class="row  justify-content-center ">
+                  <div class="col-lg-4 col-sm-4 mr-auto ml-auto ">
+                    <div class="card card-register  ">
+                        <h3 class="title" style="margin-bottom: 40px ;">Copy the code from the email and paste it here for verification</h3>
+
+                        <form class="register-form" (ngSubmit)="onSubmit(verifyTokenFormulaire)" #verifyTokenFormulaire="ngForm">
+
+                          <label>Verification Code</label>
+                          <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus===true}">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                  <i class="nc-icon nc-email-85" style="margin-top: 5px;"></i>
+                              </span>
+                            </div>
+                            <input type="string" class="form-control" name="tokenn"  placeholder="Verification Code" (focus)="focus=true" (blur)="focus=false" required [(ngModel)]="tokenToVerify.token" #tokenn="ngModel" >
+
+
+                          </div>
+                          <div [hidden]="tokenn.valid || tokenn.pristine"
+                          class="alert alert-danger">
+                             The verification code is required
+                          </div>
+
+
+
+                            <button class="btn btn-danger btn-block btn-round " [routerLink]="['/user/profile/show']" style=" margin-left:38%; margin-top: 50px;">Verify</button>
+
+                        </form>
+                        <div class="forgot" >
+                            <a [routerLink]="['/register']" routerLinkActive="router-link-active"  class="btn btn-link btn-danger">Go Back</a>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+
+          </div>
+  </div>
+</div>
