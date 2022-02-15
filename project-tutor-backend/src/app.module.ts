@@ -30,7 +30,7 @@ import { MailService } from './mail/mail.service';
     host: 'localhost',
     port: 3306,
     username: 'root',
-    password: 'root',
+    password: '',
     database: 'projetaymen',
     entities: ["dist/**/*.entity{.ts,.js}"],
     synchronize: true,
