@@ -15,6 +15,7 @@ export class Course {
         public image: string,
         public averageRating: number,
         ) {
+            image = "https://preview.colorlib.com/theme/edusmart/img/courses/xcourse-details.jpg.pagespeed.ic.F6AtKAlLP7.webp"
             if(this.packages.length!=0){
                 this.bestOffer = packages[0];
                 this.packages.forEach((paymentInfo)=>{
