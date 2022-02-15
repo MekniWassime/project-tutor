@@ -1,11 +1,11 @@
-<div class="page-header" data-parallax="true" style="background-image: url('./assets/img/daniel-olahh.jpg');">
+<div class="page-header" data-parallax="true" style="background-image: url('/assets/img/daniel-olahh.jpg');">
   <div class="filter"></div>
   <div class="container">
       <div class="motto text-center">
         <div class="row">
           <div class="col-11 mr-auto ml-auto">
             <h2 class="text-center">Keep in touch?</h2>
-            <form class="contact-form">
+            <form class="register-form" (ngSubmit)="onSubmit(contactFormulaire)" #contactFormulaire="ngForm">
                 <div class="row">
                     <div class="col-md-6">
                         <label>Name</label>
@@ -13,7 +13,11 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text" style="padding: 11px !important;"><i class="nc-icon nc-single-02"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Name" (focus)="focus=true" (blur)="focus=false" >
+                            <input type="text" class="form-control" placeholder="Name" name="name" required [(ngModel)]="contactForm.name" #name="ngModel" (focus)="focus=true" (blur)="focus=false" >
+                        </div>
+                        <div [hidden]="name.valid || name.pristine"
+                        class="alert alert-danger">
+                           Name is required
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -22,18 +26,26 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text"  style="padding: 11px !important;">  <i class="nc-icon nc-email-85"></i></span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Email" (focus)="focus1=true" (blur)="focus1=false" >
+                            <input type="email" class="form-control" placeholder="Email" name="email" required [(ngModel)]="contactForm.email" #email="ngModel" (focus)="focus1=true" (blur)="focus1=false"  >
+                        </div>
+                        <div [hidden]="email.valid || email.pristine"
+                        class="alert alert-danger">
+                           Email is required
                         </div>
                     </div>
                 </div>
                 <br>
 
                 <label>Message</label>
-                <textarea class="form-control" rows="4" placeholder="Tell us your thoughts and feelings..."></textarea>
+                <textarea class="form-control" rows="4" placeholder="Tell us your thoughts and feelings..." name="message" required [(ngModel)]="contactForm.message" #message="ngModel"></textarea>
+                <div [hidden]="message.valid || message.pristine"
+                class="alert alert-danger">
+                   Message is required
+                </div>
                 <br>
                 <div class="row">
                     <div class="col-md-12 mr-auto ml-auto">
-                        <button class="btn btn-danger btn-lg btn-fill">Send Message</button>
+                        <button class="btn btn-danger btn-lg btn-fill" (click)="onSubmit(contactFormulaire)"   [disabled]="!contactFormulaire.form.valid" [routerLink]="['/landing']" >Send Message</button>
                     </div>
                 </div>
             </form>
