@@ -249,4 +249,8 @@ export class AuthService extends CrudService<Mentor> {
     async findAllProfile(id: number) {
         return this.mentorRepository.findOne({where:{id: id}});
       }
+
+    async updateRest(id: number, name: string, phone: number, birth: string) {
+        return this.mentorRepository.update({id: id},{name: name, phone: phone, birthdate: birth});
+    }
   }

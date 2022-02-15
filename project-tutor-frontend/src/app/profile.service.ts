@@ -14,8 +14,8 @@ export class ProfileService {
   
   public async fetchMentor(id:number){
     this.httpClient.get<Mentor>(`http://localhost:3000/auth/credentials/${id}`).subscribe((mentorUser)=>{
+      console.log(mentorUser.image);
       this.mentorSubject.next(mentorUser);
-      
     })
   } 
 

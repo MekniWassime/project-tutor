@@ -106,12 +106,9 @@ export class AuthController {
     @Post('upload')
     @UseInterceptors(FileInterceptor('file', stockage))
     @HttpCode(HttpStatus.OK)
-    public async uploadFile(@UploadedFile() file, @Body() body) {
-       // const user = req.user;
-        console.log("updating file");
-        console.log(file);
-        console.log("updating user");
-        console.log(body);
-        //return this.authService.updateImage(user['sub'], file.filename);
+    public async uploadFile(@UploadedFile() file, @Body() body, @Req() req: Request) {
+        const user = req.user;
+        this.authService.updateRest(user['sub'],body.name,body.phone,body.birthdate);
+        return this.authService.updateImage(user['sub'], file.filename);
     }
 }

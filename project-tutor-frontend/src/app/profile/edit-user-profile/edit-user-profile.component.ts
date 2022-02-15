@@ -16,10 +16,14 @@ export class EditUserProfileComponent implements OnInit {
   file: File | undefined;
   async onSubmit(formulaire: NgForm){
     var formData: any = new FormData();
-    console.log(this.file);
+    console.log(formulaire.value['name']);
     formData.append('file',this.file);
-    formData.append('form',formulaire.value);
+    formData.append('name',formulaire.value['name']);
+    formData.append('birthdate',formulaire.value['birthdate']);
+    formData.append('phone',formulaire.value['phone']);
+
       this.http.post('http://localhost:3000/auth/upload', formData).subscribe((ev) => {})
+
   }
   afuConfig = {
 
