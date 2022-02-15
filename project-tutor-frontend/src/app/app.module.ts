@@ -22,6 +22,7 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
 import { SessionsComponent } from './mentor-dashboard/sessions/sessions.component';
 import { AuthService } from './auth.service';
 import { LandingComponent } from './landing/landing.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { LandingComponent } from './landing/landing.component';
     UserProfileBirthdateComponent,
     UserProfilePhoneComponent,
     LandingComponent,
+    AboutUsComponent,
   ],
   imports: [
     BrowserModule,
