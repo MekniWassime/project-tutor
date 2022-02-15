@@ -31,7 +31,8 @@ const routes: Routes = [{path:"login", component:LoginComponent},
 {
   path: "courses", children: [
     { path: '', component: CoursesListComponent },
-    { path: ':id', component: CourseDetailsComponent }
+    { path: ':id', component: CourseDetailsComponent },
+    { path: ':id/enroll', component: EnrollUserComponent },
   ]
 },
 {path:'landing', component:LandingComponent},
@@ -41,8 +42,7 @@ const routes: Routes = [{path:"login", component:LoginComponent},
   path: "mentorDashboard", children: [
     // { path: 'course/:id', component: CourseDetailsComponent,
     // children: [
-      { path: ':courseId/enroll/:userId', component: EnrollUserComponent },
-      { path: ':courseId/enrollments', component: EnrollmentsComponent},
+      { path: '526666666', component: EnrollmentsComponent},
       { path: ':courseId/sessions', component: SessionsComponent,
         children:[
           { path: 'schedulars', component: SchedularListComponent },

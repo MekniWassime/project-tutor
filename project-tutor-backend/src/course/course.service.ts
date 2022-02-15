@@ -36,4 +36,8 @@ export class CourseService extends CrudService<CourseEntity> {
         })
     }
 
+    async findById(id:number){
+        return this.courseRepository.findOne(id,{relations:['packages']})
+    }
+
 }

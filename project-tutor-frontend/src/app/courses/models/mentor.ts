@@ -10,17 +10,4 @@ export class Mentor  {
         public occupation? : string,
         public repeatedPassword? : string,
     ) { }
-
-    static fromJson(json: any) {
-        return new this(
-            json['id'],
-            json['name'],
-            json['email'],
-            json['birthdate'],
-            json['phone'],
-            json['image'],
-            json['password'],
-            json['occupation'],
-        );
-    }
 }

@@ -22,10 +22,11 @@ export class CourseDetailsService {
   private async fetchCourse(id:number){
     this.httpClient.get<Course>(`http://localhost:3000/course/${id}`).subscribe((course)=>{
       this.courseSubject.next(course);
-      console.log(course)
+      //console.log(course)
+      //console.log(course.packages)
     })
   }
-
+  
   private async fetchReviews(id:number){
 
   }

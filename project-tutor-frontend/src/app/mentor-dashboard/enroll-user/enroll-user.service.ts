@@ -29,7 +29,7 @@ export class EnrollUserService {
       'packageId':packageId
     }
     this.httpClient.post(`http://localhost:3000/enrollment/enroll`,data).subscribe((rep)=>{
-      this.router.navigate(['/mentorDashboard/',courseId,'/enrollments'])
+      this.router.navigate(['/courses',courseId])
     });
   }
 }

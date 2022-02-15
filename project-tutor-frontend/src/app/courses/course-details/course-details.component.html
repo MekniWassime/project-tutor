@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-lg-4 right-contents">
                     <app-course-informations></app-course-informations>
-                    <button type="button" class="button block">ENROLL THE COURSE</button>
+                    <a type="button" class="button block" [routerLink]="['/','courses',(courseService.course | async)!.id , 'enroll']" >ENROLL THE COURSE</a>
                     <app-reviews-summery></app-reviews-summery>
                     <app-review-form></app-review-form>
                     <app-reviews-preview></app-reviews-preview>

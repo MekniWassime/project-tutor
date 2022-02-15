@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PackageModel } from '../models/package-model';
@@ -12,7 +13,8 @@ export class EnrollUserComponent implements OnInit {
 
   constructor(
     public enrollmentService: EnrollUserService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private authService: AuthService
   ) { }
 
   userId = '';
@@ -20,9 +22,9 @@ export class EnrollUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe(params => {
-      if (params['courseId']) {
-        this.couresId = params['courseId']
-        this.enrollmentService.fetchPackages(params['courseId']);
+      if (params['id']) {
+        this.couresId = params['id']
+        this.enrollmentService.fetchPackages(params['id']);
       }
       if (params['userId']) {
         this.userId = params['userId'];
@@ -37,7 +39,8 @@ export class EnrollUserComponent implements OnInit {
   submitEnroll() {
     if (this.selectedItem) {
       console.log(this.selectedItem)
-      this.enrollmentService.enroll(this.couresId,this.userId,this.selectedItem.id);
+      console.log(this.authService.userInfo.value!['sub'])
+      this.enrollmentService.enroll(this.couresId,this.authService.userInfo.value!['sub'],this.selectedItem.id);
     } else {
       //error
     }

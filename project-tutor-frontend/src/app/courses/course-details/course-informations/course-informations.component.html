@@ -1,3 +1,3 @@
-<div *ngFor="let paymentInfoItem of (courseService.course | async)!.paymentInfoList;">
+<div *ngFor="let paymentInfoItem of (courseService.course | async)!.packages;">
     <app-course-information-item [payment-info]="paymentInfoItem" ></app-course-information-item>
 </div>

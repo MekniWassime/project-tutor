@@ -5,12 +5,4 @@ export class ContactForm {
       public email: string,
       public message: string,
   ) { }
-
-  static fromJson(json: any) {
-      return new this(
-          json['name'],
-          json['email'],
-          json['message']
-      );
-  }
 }

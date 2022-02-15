@@ -1,12 +1,12 @@
-<div class="project-wrap">
-    <a href="#" class="img" style="background-image: url({{course.image}});">
+<div class="project-wrap" (click)="onClick()">
+    <a class="img" style="background-image: url({{course.image}});">
         <span class="price">{{course.category | courseCategory}}</span>
     </a>
     <div class="text p-4">
-        <h3><a href="#">{{course.title | titlecase}}</a></h3>
+        <h3><a >{{course.title | titlecase}}</a></h3>
         <p class="advisor">Tutor <span>{{course.mentor.name}}</span></p>
         <ul class="d-flex justify-content-between">
-            <li><span class="flaticon-shower"></span>{{course.bestOffer?.numberOfSessions}} sessions for</li>
+            <li><span class="flaticon-shower"></span>{{course.bestOffer?.nbSessions}} sessions for</li>
             <li class="price">{{course.bestOffer?.price}} DT</li>
         </ul>
     </div>

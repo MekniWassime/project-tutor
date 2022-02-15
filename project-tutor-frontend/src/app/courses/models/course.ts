@@ -11,13 +11,13 @@ export class Course {
         public capacity: number,
         public adress: string,
         public mentor: Mentor,
-        public paymentInfoList: PaymentInfo[],
+        public packages: PaymentInfo[],
         public image: string,
         public averageRating: number,
         ) {
-            if(this.paymentInfoList.length!=0){
-                this.bestOffer = paymentInfoList[0];
-                this.paymentInfoList.forEach((paymentInfo)=>{
+            if(this.packages.length!=0){
+                this.bestOffer = packages[0];
+                this.packages.forEach((paymentInfo)=>{
                     if(this.bestOffer!.sessionPrice>paymentInfo.sessionPrice)
                         this.bestOffer = paymentInfo;
                 });
@@ -25,21 +25,4 @@ export class Course {
         }
     
     public bestOffer: PaymentInfo | undefined;
-
-    static fromJson(json: any): Course{
-        const mentor = Mentor.fromJson(json['mentor']);
-        const paymentInfo = (json['paymentInfo'] as any[]).map((element)=> PaymentInfo.fromJson(element));
-        return new this(
-            json['id'],
-            json['title'],
-            json['desctiption'],
-            json['category'],
-            json['capacity'],
-            json['adress'],
-            mentor,
-            paymentInfo,
-            json['image'],
-            json['averageRating']
-        );
-    }
 }

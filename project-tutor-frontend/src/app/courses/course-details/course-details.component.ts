@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Course } from '../models/course';
 import { Mentor } from '../models/mentor';
 import { PaymentInfo } from '../models/payment-info';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-course-details',
@@ -16,7 +16,8 @@ export class CourseDetailsComponent implements OnInit {
 
   constructor(
     public courseService: CourseDetailsService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -26,6 +27,10 @@ export class CourseDetailsComponent implements OnInit {
           this.courseService.fetchCourseAndReviews(params['id']);
       }
   })
+  }
+
+  enroll():void{
+    
   }
 
 }
