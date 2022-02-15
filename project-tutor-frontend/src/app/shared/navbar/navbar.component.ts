@@ -17,12 +17,18 @@ export class NavbarComponent implements OnInit {
 }
 
   loggedIn = false;
+  isMentor = false;
 
   ngOnInit(): void {
     const navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
     this.authService.userInfo.subscribe((value)=>{
       this.loggedIn = value != null;
+      if(value != null){
+        this.isMentor = (value['role'] as String).includes('mentor');
+      }else{
+        this.isMentor = false;
+      }
     })
   }
 
