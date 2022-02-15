@@ -21,6 +21,8 @@ import { AngularFileUploaderModule } from 'angular-file-uploader';
 
 import { SessionsComponent } from './mentor-dashboard/sessions/sessions.component';
 import { AuthService } from './auth.service';
+import { LandingComponent } from './landing/landing.component';
+
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { AuthService } from './auth.service';
     UserProfileEmailComponent,
     UserProfileBirthdateComponent,
     UserProfilePhoneComponent,
+    LandingComponent,
   ],
   imports: [
     BrowserModule,

@@ -18,6 +18,7 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
 import { UserProfileComponent } from './profile/user-profile/user-profile.component';
 import { EditUserProfileComponent } from './profile/edit-user-profile/edit-user-profile.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { LandingComponent } from './landing/landing.component';
 
 const routes: Routes = [{path:"login", component:LoginComponent},
 {path:"register", component:RegisterComponent},
@@ -31,21 +32,22 @@ const routes: Routes = [{path:"login", component:LoginComponent},
     { path: ':id', component: CourseDetailsComponent }
   ]
 },
+{path:'landing', component:LandingComponent},
 {
   path: "mentorDashboard", children: [
     // { path: 'course/:id', component: CourseDetailsComponent,
     // children: [
       { path: ':courseId/enroll/:userId', component: EnrollUserComponent },
       { path: ':courseId/enrollments', component: EnrollmentsComponent},
-      { path: ':courseId/sessions', component: SessionsComponent, 
+      { path: ':courseId/sessions', component: SessionsComponent,
         children:[
           { path: 'schedulars', component: SchedularListComponent },
           { path: 'sessions', component: SessionsListComponent},
           { path: 'createSession', component: CreateSessionComponent},
           { path: 'createSchedular', component: CreateSchedularComponent},
 
-        ]},  
-    
+        ]},
+
     // ]},
   ]
 }
