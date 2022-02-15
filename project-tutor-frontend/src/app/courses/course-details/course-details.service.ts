@@ -24,7 +24,7 @@ export class CourseDetailsService {
       this.courseSubject.next(course);
       console.log(course)
     })
-  }
+  } 
 
   private async fetchReviews(id:number){
 
