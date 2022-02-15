@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate{
   {
   //  let userData = this.authService.userInfo.getValue();
   //  if(userData && userData){ //! sub represents user id value     userData && userData.sub .. but i don't have this instance si i can't fetch the .sub !!!!!!!
-    if(localStorage.getItem('access_token')){
+    if(this.authService.getUserInfo){
       if((state.url.indexOf("/login")  != -1)){
         // loggin user trying to access login page
         this.router.navigate(["user/profile/show"]);
@@ -30,10 +30,9 @@ export class AuthGuard implements CanActivate{
       else{
         return true;
       }
-    }else if(localStorage.getItem('access_token')){
+    }else if(this.authService.getUserInfo){
 
       if((state.url.indexOf("/register") != -1)){
-        // not logged in users only navigate to login page and other pages
         this.router.navigate(["/user/profile/show"]);
         return false;
       }else{

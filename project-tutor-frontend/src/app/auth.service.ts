@@ -23,6 +23,13 @@ export class AuthService {
     }
   }
 
+  userLogout(){
+    this.http.post("http://localhost:3000/auth/logout",{'id': this.getUserInfo['sub']});
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    this.userInfo.next(null);
+  }
+
   userLogin(login: any): Observable<boolean> {
     if (login && login.email && login.password) {
     return this.http.post("http://localhost:3000/auth/login",login).pipe(
