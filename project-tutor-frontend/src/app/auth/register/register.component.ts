@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
   test : Date = new Date();
   focus: any;
   focus1 : any;
-  user: User = new User(1,'','',new Date(),0,'','',[]);;
+  user: User = new User(1,'','',new Date(),0,'','',[]);
   mentor: Mentor | undefined;
   passwordToString:string='';
   repeatedpasswordToString:string='';
